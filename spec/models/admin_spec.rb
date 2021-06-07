@@ -21,7 +21,7 @@ describe Admin do
     end
 
     it 'success to create with paynow domain' do
-      admin = Admin.new(email: 'admin@paynow.com', password: '123456')
+      admin = Admin.new(email: 'admin@paynow.com.br', password: '123456')
 
       admin.valid?
 

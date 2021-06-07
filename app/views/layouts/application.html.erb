@@ -10,8 +10,33 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ps-3">
+    <%= link_to 'Paynow', root_path, class:"navbar-brand" %>
+      <div class="collapse navbar-collapse">
+       <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+         <% if  admin_signed_in?%>
+        <li class="nav-item">
+           <span class="text-light nav-link disabled"><%= current_admin.email %></span>
+        </li>
+         <%= link_to 'Sair',  destroy_admin_session_path, method: :delete, class:"nav-link" %>
+         <% else %>
+        </li>
+          <li class="nav-item active">
+          <%= link_to 'Logar', new_admin_session_path, class:"nav-link" %>
+        </li>
+       <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>
+  </header>
+      <% flash.each do |nome, mensagem| %>
+      <%= content_tag :div, mensagem, class: 'base-alert ' + nome %>
+    <% end %>
+      <div class="container-fluid">
+        <%= yield %>
+      </div>
   </body>
 </html>
