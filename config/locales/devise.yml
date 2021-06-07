@@ -1,0 +1,21 @@
+---
+  pt-BR:
+    activerecord:
+      models:
+        admin:
+          one: Administrador(a)
+          other: Administradores(as)
+      attributes:
+        admin:
+          password: Senha
+          password_confirmation: Confirmação de senha
+          remember_me: Lembrar-me
+    devise:
+        sessions:
+          new:
+            title: Admin Login
+            Log in: Logar
+        shared:
+          links:
+            Forgot your password?: Esqueci minha senha
+              
