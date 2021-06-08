@@ -1,0 +1,21 @@
+pt-BR:
+  admin:
+    payment_methods:
+      new:
+        title: Formulário de criação de metodos de pagamento
+      edit:
+        title: Formulário de atualização de metodo de pagamento
+      destroy:
+        success: Metodo de pagamento excluido com sucesso
+      update:
+        fail: Falha na atualização
+    attributes: 
+      payment_method:
+        name: Nome
+        max_fee: Taxa máxima em reais
+        percentage_fee: Taxa por cobrança
+    
+
+
+
+ 

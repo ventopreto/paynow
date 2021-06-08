@@ -21,7 +21,7 @@
            <span class="text-light nav-link disabled"><%= current_admin.email %></span>
         </li>
           <li class="nav-item">
-          <%= link_to 'Metodos de Pagamento', admin_payments_path, class:"nav-link" %>
+          <%= link_to 'Metodos de Pagamento', admin_payment_methods_path, class:"nav-link" %>
         </li>
          <%= link_to 'Sair',  destroy_admin_session_path, method: :delete, class:"nav-link" %>
          <% else %>
