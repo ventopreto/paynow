@@ -10,11 +10,11 @@
           password: Senha
           password_confirmation: Confirmação de senha
           remember_me: Lembrar-me
-    devise:
+    admins:
         sessions:
           new:
             title: Admin Login
-            Log in: Logar
+            Log in: Entrar
         shared:
           links:
             Forgot your password?: Esqueci minha senha

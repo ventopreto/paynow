@@ -6,4 +6,6 @@ describe 'User visit home' do
 
     expect(page).to have_content('Boas vindas ao Paynow')
   end
+
+  
 end

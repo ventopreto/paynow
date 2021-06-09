@@ -4,10 +4,10 @@ describe 'Admin visit home' do
   it 'successfully' do
     admin = Admin.create!(email: 'admin@paynow.com.br', password: '123456')
 
-    login_as admin
+    login_as admin, scope: :admin
     visit admin_root_path
 
-    expect(page).to have_content('Boas vindas ao Paynow')
+    expect(current_path).to eq(admin_root_path)
   end
 
   it 'and fail' do

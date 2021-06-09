@@ -16,15 +16,18 @@
       <div class="collapse navbar-collapse">
        <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-         <% if  admin_signed_in?%>
+         <% if  user_signed_in?%>
         <li class="nav-item">
-           <span class="text-light nav-link disabled"><%= current_admin.email %></span>
+           <span class="text-light nav-link disabled"><%= current_user.email %></span>
         </li>
-         <%= link_to 'Sair',  destroy_admin_session_path, method: :delete, class:"nav-link" %>
+         <%= link_to 'Sair',  destroy_user_session_path, method: :delete, class:"nav-link" %>
          <% else %>
         </li>
           <li class="nav-item active">
-          <%= link_to 'Logar', new_admin_session_path, class:"nav-link" %>
+          <%= link_to 'Logar', new_user_session_path, class:"nav-link" %>
+        </li>
+        <li class="nav-item active">
+          <%= link_to 'Cadastre-se', new_user_registration_path, class:"nav-link" %>
         </li>
        <% end %>
       </li>

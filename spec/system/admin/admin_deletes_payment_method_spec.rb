@@ -6,7 +6,7 @@ describe 'Admin' do
       admin = Admin.create!(email: 'admin@paynow.com.br', password: '123456')
       PaymentMethod.create(name: 'Boleto', max_fee: 10, percentage_fee:10)
 
-      login_as admin
+      login_as admin, scope: :admin
       visit admin_root_path
       click_on 'Metodos de Pagamento'
       click_on 'Boleto'

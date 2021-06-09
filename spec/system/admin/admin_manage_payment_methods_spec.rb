@@ -6,7 +6,7 @@ describe 'Admin' do
 
   admin = Admin.create!(email: 'admin@paynow.com.br', password: '123456')
 
-  login_as admin
+  login_as admin, scope: :admin
   visit admin_root_path
   click_on 'Metodos de Pagamento'
 
@@ -17,7 +17,7 @@ describe 'Admin' do
     it 'and create a new one' do
       admin = Admin.create!(email: 'admin@paynow.com.br', password: '123456')
 
-      login_as admin
+      login_as admin, scope: :admin
       visit admin_root_path
       click_on 'Metodos de Pagamento'
       click_on 'Cadastrar Metodo de Pagamento'
@@ -38,7 +38,7 @@ describe 'Admin' do
     it 'and attributes cannot be blank ' do
       admin = Admin.create!(email: 'admin@paynow.com.br', password: '123456')
 
-      login_as admin
+      login_as admin, scope: :admin
       visit admin_root_path
       click_on 'Metodos de Pagamento'
       click_on 'Cadastrar Metodo de Pagamento'

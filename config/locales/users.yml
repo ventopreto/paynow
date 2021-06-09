@@ -1,0 +1,38 @@
+---
+  pt-BR:
+    activerecord:
+      models:
+        user:
+          one: usuario(a)
+          other: Administradores(as)
+      attributes:
+        user:
+          password: Senha
+          password_confirmation: Confirmação de senha
+          remember_me: Lembrar-me
+    users:
+        sessions:
+          new:
+            title: Login
+            Log in: Entrar
+        registrations:
+            new: 
+              title: Registro
+              Sign up: Registrar
+              shared:
+                links:
+                  Log in: Pagina de Login
+                  Sign up: Registrar-me
+                  Forgot your password?: Esqueci minha senha
+        passwords:
+          new:
+            title: Recuperação de senha
+            Send me reset password instructions: Me mande instruções para resetar a senha
+        shared:
+          links:
+            Log in: Pagina de Login
+            Sign up: Registrar-me
+            Forgot your password?: Esqueci minha senha
+
+              
+      
