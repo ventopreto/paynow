@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   root to: "home#index"
 
 
+  namespace :user do
+    resources :companies, only: %i[new create show]
+  end
+
   namespace :admin do
     root to: "home#index"
     resources :payment_methods
