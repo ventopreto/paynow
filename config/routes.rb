@@ -11,5 +11,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "home#index"
     resources :payment_methods
+    resources :companies, only: %i[index show edit update] do
+      patch 'update_token', on: :member
+    end
   end
 end

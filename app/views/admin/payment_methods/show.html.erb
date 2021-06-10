@@ -1,11 +1,14 @@
-<h5> <%= @payment_method.name %> </h5>
-<p> <%= @payment_method.percentage_fee %> </p>
-<p> <%= number_to_currency(@payment_method.max_fee) %> </p>
-<p> <%= "#{@payment_method.percentage_fee}%" %> </p>
-  <% if @payment_method.icon.attached?%>
+
+  <div class="card border border-5 mt-3" style="width: 27rem;">
+  <div class="card-body">
+    <% if @payment_method.icon.attached?%>
   <%= image_tag @payment_method.icon, size: "50x50", class:"mx-auto" %> 
   <% end %>
+<h5 class="card-title">Nome: > <%= @payment_method.name %> </h5>
+<p class="card-text">Taxa maxima:  <%= number_to_currency(@payment_method.max_fee) %> </p>
+<p class="card-text">Taxa:  <%= "#{@payment_method.percentage_fee}%" %> </p>
 
-    <%= link_to 'Editar', edit_admin_payment_method_path %>
-    <%= link_to 'Excluir', admin_payment_method_path, method: :delete %>
-  <%= link_to 'Voltar', admin_payment_methods_path %>
+
+  <%= link_to 'Editar', edit_admin_payment_method_path, class:"btn btn-outline-dark" %>
+  <%= link_to 'Excluir', admin_payment_method_path, method: :delete, class:"btn btn-outline-dark" %>
+  <%= link_to 'Voltar', admin_payment_methods_path, class:"btn btn-outline-dark" %>

@@ -1,5 +1,4 @@
-
-  <div class="card border border-5 mt-3" style="width: 27rem;">
+<div class="card border border-5 mt-3" style="width: 27rem;">
   <div class="card-body">
   <h5 class="card-title">Nome: <%= @company.cnpj %> </h5>
   <p class="card-text">Razão Social:   <%= @company.corporate_name %> </p>
@@ -7,4 +6,6 @@
   <p class="card-text">Dominio da empresa:  <%= @company.email_domain %> </p>
   <p class="card-text">Token:  > <%= @company.token %> </p>
 
+  <%= link_to 'Gerar Novo Token', update_token_admin_company_path, method: :patch, class:"btn btn-outline-dark" %>
+  <%= link_to 'Editar', edit_admin_company_path, class:"btn btn-outline-dark" %>
   <%= link_to 'Voltar', root_path, class:"btn btn-outline-dark" %>
