@@ -1,4 +1,5 @@
 class User::CompaniesController < User::UserController
+
   def new
     @company = Company.new
   end
@@ -17,18 +18,29 @@ class User::CompaniesController < User::UserController
   def show
   @company = Company.find(params[:id])
   end
+
+def update_token
+  @company = Company.find(params[:id])
+  @company.token = SecureRandom.base64(20)
+  if @company.save
+    redirect_to [:user, @company]
+  end
 end
 
 private
 
-def set_admin
-  current_user.update_column(:role, 1) 
-end
 
-def set_company_id
-  current_user.update_column(:company_id, @company.id) 
-end
 
-def company_params
-  params.require(:company).permit(:cnpj, :corporate_name, :billing_address, :email)
+  def set_admin
+    current_user.update_column(:role, 1) 
+  end
+
+  def set_company_id
+    current_user.update_column(:company_id, @company.id) 
+  end
+
+  def company_params
+    params.require(:company).permit(:cnpj, :corporate_name, :billing_address, :email)
+  end
+
 end

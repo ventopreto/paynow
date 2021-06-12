@@ -1,5 +1,7 @@
 ---
   pt-BR:
+    links:
+      back: Voltar
     activerecord:
       models:
         company:
@@ -11,7 +13,11 @@
           corporate_name: Razão Social
           billing_address: Endereço de faturamento
           email: E-mail para faturamento
-
+    user:
+      companies:
+          new:
+            title: Formulário
+            
 
               
       

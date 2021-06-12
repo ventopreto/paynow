@@ -8,14 +8,14 @@ describe 'Unauthorized Visitor ' do
     end
 
     it 'show payment method' do
-      boleto = PaymentMethod.create!(name: 'Boleto', max_fee: 10, percentage_fee:10)
+      boleto = PaymentMethod.create(name: 'Boleto', max_fee: 10, percentage_fee:10, category: 1)
       visit admin_payment_method_path(boleto)
 
       expect(current_path).to eq(new_admin_session_path)
     end
 
     it 'new payment method' do
-      boleto = PaymentMethod.create!(name: 'Boleto', max_fee: 10, percentage_fee:10)
+      boleto = PaymentMethod.create(name: 'Boleto', max_fee: 10, percentage_fee:10, category: 1)
       visit new_admin_payment_method_path
 
       expect(current_path).to eq(new_admin_session_path)
@@ -28,21 +28,21 @@ describe 'Unauthorized Visitor ' do
     end
 
     it 'update payment method' do
-      boleto = PaymentMethod.create!(name: 'Boleto', max_fee: 10, percentage_fee:10)
+      boleto = PaymentMethod.create(name: 'Boleto', max_fee: 10, percentage_fee:10, category: 1)
       visit edit_admin_payment_method_path(boleto)
 
       expect(current_path).to eq(new_admin_session_path)
     end
 
     it 'patch request to payment method' do
-      boleto = PaymentMethod.create!(name: 'Boleto', max_fee: 10, percentage_fee:10)
+      boleto = PaymentMethod.create(name: 'Boleto', max_fee: 10, percentage_fee:10, category: 1)
       patch admin_payment_method_path(boleto)
 
       expect(response).to redirect_to(new_admin_session_path)
     end
 
     it 'delete request to payment method' do
-      boleto = PaymentMethod.create(name: 'Boleto', max_fee: 10, percentage_fee:10)
+      boleto = PaymentMethod.create(name: 'Boleto', max_fee: 10, percentage_fee:10, category: 1)
   
       delete admin_payment_method_path(boleto)
       expect(response).to redirect_to(new_admin_session_path)

@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
 
   namespace :user do
-    resources :companies, only: %i[new create show]
+    resources :payment_methods
+    resources :companies, only: %i[new create show] do
+      patch 'update_token', on: :member
+    end
+
   end
 
   namespace :admin do

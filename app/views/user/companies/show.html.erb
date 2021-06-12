@@ -7,4 +7,7 @@
   <p class="card-text">Dominio da empresa:  <%= @company.email_domain %> </p>
   <p class="card-text">Token:  > <%= @company.token %> </p>
 
+  <% if current_user.admin? %>
+  <%= link_to 'Gerar Novo Token', update_token_user_company_path, method: :patch, class:"btn btn-outline-dark" %>
+  <% end %>
   <%= link_to 'Voltar', root_path, class:"btn btn-outline-dark" %>

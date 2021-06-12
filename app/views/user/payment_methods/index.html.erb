@@ -1,0 +1,12 @@
+<h1>Pagina de gerenciamento de metodos de pagamento</h1>
+<% @payment_methods.each do |payment_method| %>
+  <% if payment_method.icon.attached? %>
+<%= image_tag payment_method.icon, size: '50' %>
+<% end %>
+<%= link_to payment_method.name, [:admin, payment_method] %>
+<% end %>
+
+
+<%= link_to 'Cadastrar Metodo de Pagamento', new_admin_payment_method_path %>
+<%= link_to 'Voltar', admin_root_path %>
+

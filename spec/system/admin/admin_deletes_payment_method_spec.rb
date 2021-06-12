@@ -4,7 +4,7 @@ describe 'Admin' do
     describe 'deletes payment method' do
      it 'successfully' do
       admin = Admin.create!(email: 'admin@paynow.com.br', password: '123456')
-      PaymentMethod.create(name: 'Boleto', max_fee: 10, percentage_fee:10)
+      PaymentMethod.create!(name: 'Boleto', max_fee: 10, percentage_fee:10, category:1)
 
       login_as admin, scope: :admin
       visit admin_root_path

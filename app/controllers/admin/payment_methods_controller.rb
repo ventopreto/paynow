@@ -44,7 +44,7 @@ class Admin::PaymentMethodsController <  Admin::AdminController
 private
 
 def payment_method_params
-  params.require(:payment_method).permit(:name, :icon, :max_fee, :percentage_fee)
+  params.require(:payment_method).permit(:name, :max_fee, :percentage_fee, :category)
 end
 
 def set_payment_method
