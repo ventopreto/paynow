@@ -19,13 +19,16 @@ describe Pix do
       codeplay =Company.create(email: 'codeplay@codeplay.com.br', cnpj: 12345678910110, 
       billing_address:'Rua Tal, 50, Centro',
       corporate_name: 'codeplay ltda')
-      payment = PaymentMethod.new(name: 'pix', max_fee: 30, percentage_fee: 10)
-      pix = Pix.new(pix_key: token, bank_code: 1234, company_id: codeplay.id, payment_method_id: payment.id)
-  
+      payment = PaymentMethod.create(name: 'pix', max_fee: 30, percentage_fee: 10, category: "Pix")
+      pix = Pix.create(pix_key: token, bank_code: 1234, company_id: codeplay.id, payment_method_id: payment.id)
+
+      payment.valid?
       pix.valid?
   
+
       expect(pix.pix_key).to eq(token)
       expect(pix.bank_code).to eq(1234)
+      expect(payment).to be_valid
       expect(pix).to be_valid
     end
   end

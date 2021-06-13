@@ -1,7 +1,11 @@
 class PaymentMethod < ApplicationRecord
   has_one_attached :icon
   validates :name, :max_fee, :percentage_fee, presence: true
-
+  has_many :boletos
+  has_many :pix
+  has_many :company_payments
+  has_many :companies, through: :company_payments
+  has_many :credit_cards
   enum category: { Pix:0, Boleto:1, Cartão:2}
 
   before_save :set_icons

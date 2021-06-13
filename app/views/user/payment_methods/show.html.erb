@@ -4,12 +4,16 @@
     <% if @payment_method.icon.attached?%>
   <%= image_tag @payment_method.icon, size: "50x50", class:"mx-auto" %> 
   <% end %>
-<h5 class="card-title">Nome: > <%= @payment_method.name %> </h5>
+<h5 class="card-title"><%= "#{@payment_method.category} #{@payment_method.name}" %> </h5>
 <p class="card-text">Taxa maxima:  <%= number_to_currency(@payment_method.max_fee) %> </p>
 <p class="card-text">Taxa:  <%= "#{@payment_method.percentage_fee}%" %> </p>
 
 
-
-  <%= link_to 'Editar', edit_admin_payment_method_path, class:"btn btn-outline-dark" %>
-  <%= link_to 'Excluir', admin_payment_method_path, method: :delete, class:"btn btn-outline-dark" %>
-  <%= link_to 'Voltar', admin_payment_methods_path, class:"btn btn-outline-dark" %>
+<% if @payment_method.category == 'Boleto' %>
+  <%= link_to 'Adicionar esse meio de pagamento', new_user_payment_method_boleto_path(@payment_method), class:"btn btn-outline-dark" %>
+  <% elsif @payment_method.category == 'Pix' %>
+  <%= link_to 'Adicionar esse meio de pagamento', new_user_payment_method_pix_path(@payment_method), class:"btn btn-outline-dark" %>
+  <% else %>
+  <%= link_to 'Adicionar esse meio de pagamento', new_user_payment_method_credit_card_path(@payment_method), class:"btn btn-outline-dark" %>
+  <% end %>
+  <%= link_to 'Voltar', user_payment_methods_path, class:"btn btn-outline-dark" %>

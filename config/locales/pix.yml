@@ -1,0 +1,19 @@
+---
+  pt-BR:
+    activerecord:
+      models:
+        pix:
+          one: Pix
+          other: Pix
+      attributes:
+        pix:
+          bank_code: Código do banco
+          pix_key: Chave Pix
+          bank_account: Conta bancária
+    user:
+        pixes:
+          new:
+            title: Formulário
+            submit: Enviar
+
+              

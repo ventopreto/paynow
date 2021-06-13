@@ -1,0 +1,19 @@
+---
+  pt-BR:
+    activerecord:
+      models:
+        boleto:
+          one: Boleto
+          other: Boletos
+      attributes:
+        boleto:
+          bank_code: Código do banco
+          agency_number: Número da agência
+          bank_account: Conta bancária
+    user:
+        boletos:
+          new:
+            title: Formulário
+            submit: Enviar
+
+              

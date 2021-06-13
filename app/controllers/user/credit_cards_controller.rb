@@ -1,15 +1,16 @@
 class User::CreditCardsController < User::UserController
 
   def new
+    @payment_method = PaymentMethod.find(params[:payment_method_id])
     @creditcard = CreditCard.new
   end
 
   def create
+    @payment_method = PaymentMethod.find(params[:payment_method_id])
     @creditcard = CreditCard.new(credit_card_params)
+    @creditcard.company = current_user.company
+    @creditcard.payment_method = @payment_method
     if @creditcard.save
-      set_admin
-      set_company_id
-      redirect_to [:user, @creditcard]
     else
       render :new
     end
@@ -22,6 +23,6 @@ class User::CreditCardsController < User::UserController
 private
 
   def credit_card_params
-    params.require(:creditcard).permit(:token)
+    params.require(:credit_card).permit(:token)
   end
 end

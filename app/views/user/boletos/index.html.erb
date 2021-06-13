@@ -1,0 +1,27 @@
+<h1>Pagina de gerenciamento de metodos de pagamento</h1>
+
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Boleto</th>
+      <th scope="col">Pix</th>
+      <th scope="col">Cartão</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <% @boletos.each do |boleto| %>
+      <td><h5 class="card-title"><%= link_to boleto.payment_method.name, [:user, boleto] %></h5></td>
+    </tr>
+  </tbody>
+  <% end %>
+  
+</table>
+<%= link_to 'Habilitar um Novo Boleto', boleto_new_user_payment_method_path, class:"btn btn-outline-dark" %>
+<%= link_to 'Habilitar um Novo Pix', pix_new_user_payment_method_path, class:"btn btn-outline-dark" %>
+<%= link_to 'Habilitar um Novo Cartão', creditcard_new_user_payment_method_path, class:"btn btn-outline-dark" %>
+
+
+<%= link_to 'Voltar', root_path, class:"btn btn-outline-dark" %>

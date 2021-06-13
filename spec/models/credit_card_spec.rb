@@ -18,8 +18,8 @@ describe CreditCard do
       codeplay =Company.create(email: 'codeplay@codeplay.com.br', cnpj: 12345678910110, 
       billing_address:'Rua Tal, 50, Centro',
       corporate_name: 'codeplay ltda')
-      payment = PaymentMethod.new(name: 'Nubank', max_fee: 30, percentage_fee: 10, category:1, company_id: codeplay.id, payment_method_id: payment.id)
-      cartão = CreditCard.new(token: token)
+      payment = PaymentMethod.create(name: 'pix', max_fee: 30, percentage_fee: 10, category: "Cartão")
+      cartão = CreditCard.create(token: token, payment_method_id: payment.id, company_id: codeplay.id)
   
       cartão.valid?
   
