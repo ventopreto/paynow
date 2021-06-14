@@ -4,7 +4,7 @@
     <% if @payment_method.icon.attached?%>
   <%= image_tag @payment_method.icon, size: "50x50", class:"mx-auto" %> 
   <% end %>
-<h5 class="card-title"><%= category_with_name %> </h5>
+<h5 class="card-title"><%= "#{@payment_method.category} #{@payment_method.name}" %> </h5>
 <p class="card-text">Taxa maxima:  <%= number_to_currency(@payment_method.max_fee) %> </p>
 <p class="card-text">Taxa:  <%= "#{@payment_method.percentage_fee}%" %> </p>
 

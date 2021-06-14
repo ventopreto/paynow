@@ -11,13 +11,30 @@ class User::PixesController < User::UserController
     @pix.company = current_user.company
     @pix.payment_method = @payment_method
     if @pix.save
+      redirect_to user_payment_method_pix_path(@payment_method, @pix)
     else
       render :new
     end
   end
 
   def show
-  @creditcard = CreditCard.find(params[:id])
+  @payment_method = PaymentMethod.find(params[:payment_method_id])
+  @pix = Pix.find(params[:id])
+  end
+
+  def edit
+    @payment_method = PaymentMethod.find(params[:payment_method_id])
+    @pix = Pix.find(params[:id])
+  end
+
+  def update
+    @payment_method = PaymentMethod.find(params[:payment_method_id])
+    @pix = Pix.find(params[:id])
+    if @pix.update(pix_params)
+      redirect_to user_payment_method_pix_path(@payment_method, @boleto)
+    else
+      render :new
+    end
   end
 
 private

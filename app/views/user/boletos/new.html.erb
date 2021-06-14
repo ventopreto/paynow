@@ -1,41 +1,5 @@
-<h1 class="text-center"><%= t('.title') %></h1>
-<div class="container">
-
-<div class="card mx-auto" style="width: 15rem;">
-  <div class="card-body">
-<%= form_with model: [:user, @payment_method, @boleto] do |f| %>
-  <% if @boleto.errors.any? %>
-      <ul>
-        <% @boleto.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
-    <%= f.label :bank_code, "Código do banco", class:"form_label" %>
-    <%= f.text_field :bank_code , class:"form_controll" %>
-
-
-
-    <%= f.label :agency_number, "Número da agência", class:"form_label" %>
-    <%= f.text_field :agency_number , class:"form_controll" %>
-
-
-
-    <%= f.label :bank_account, "Conta bancária", class:"form_label" %>
-    <%= f.text_field :bank_account , class:"form_controll" %>
-
-
-
-
-  <div class="input-group-btn">
-    <%= f.submit t('.submit'),  class:"btn btn-outline-success btn-sm" %>
-    <%= link_to t('links.back'), root_path, class:"btn btn-outline-dark btn-sm" %>
-</div>
-<% end %>
-</div>
+<h1 class="text-center"><%= t('.title') %> </h1>
+<%= render partial: 'form', locals: {boleto: @boleto, button_text: 'Criar'}%>
 
 
 

@@ -51,7 +51,8 @@ describe 'Visitor' do
       click_on 'Registrar'
   
       expect(User.last.company_id).to eq(company.id)
-      expect(page).to have_content('Gerenciar Meios de Pagamento')
+      expect(page).to have_content('Meios de Pagamento Disponiveis')
+      expect(page).to have_content('Dados da Empresa')
     end
   
     it 'without valid company email domain' do

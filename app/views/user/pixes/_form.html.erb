@@ -1,0 +1,32 @@
+<h1 class="text-center"><%= t('.title') %></h1>
+<div class="container">
+
+<div class="card mx-auto" style="width: 15rem;">
+  <div class="card-body">
+<%= form_with model: [:user, @payment_method, @pix] do |f| %>
+  <% if @pix.errors.any? %>
+      <ul>
+        <% @pix.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <%= f.label :bank_code, "Código do Banco", class:"form_label" %>
+    <%= f.text_field :bank_code , class:"form_controll" %>
+
+    <%= f.label :pix_key, "Chave Pix", class:"form_label" %>
+    <%= f.text_field :pix_key , class:"form_controll" %>
+
+  <div class="input-group-btn">
+    <%= f.submit button_text,  class:"btn btn-outline-success btn-sm" %>
+    <%= link_to t('links.back'), root_path, class:"btn btn-outline-dark btn-sm" %>
+</div>
+<% end %>
+</div>
+
+
+
+

@@ -1,5 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe CompanyPayment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Company do
+  it { should have_many(:payment_methods).through(:company_payments) }
+end
+
+describe PaymentMethod do
+  it { should have_many(:companies).through(:company_payments) }
 end
