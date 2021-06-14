@@ -2,19 +2,20 @@
 
 <div class="card mx-auto" style="width: 15rem;">
   <div class="card-body">
+
+      <% if @creditcard.errors.any? %>
+  <div id="error-explanation">
+</div>
+<% end %>
+
 <%= form_with model: [:user, @payment_method, @creditcard] do |f| %>
-  <% if @creditcard.errors.any? %>
-      <ul>
-        <% @creditcard.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+
 
 
     <%= f.label :token, "Código Alfanumérico", class:"form_label" %>
+        <%= error_tag @creditcard, :token %>
     <%= f.text_field :token , class:"form_controll" %>
+
 
 
   <div class="input-group-btn">

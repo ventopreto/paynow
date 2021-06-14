@@ -1,45 +1,35 @@
+<h1 class="text-center"><%= t('.title') %></h1>
 <div class="container">
 
+<div class="card mx-auto" style="width: 15rem;">
+  <div class="card-body">
 <%= form_with model: [:admin, payment_method] do |f| %>
-  <% if payment_method.errors.any? %>
-      <ul>
-        <% payment_method.errors.each do |error| %>
-          <li><%= error.message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <%= f.label :category, "Categoria", class:"form_label" %>
+                  <%= error_tag payment_method, :category %>
   <%= f.select :category, PaymentMethod.categories.keys%>
 
-<div class="row g-2">
-  <div class="col-md-6">
+
     <%= f.label :name, "Nome", class:"form_label" %>
+                <%= error_tag payment_method, :name %>
     <%= f.text_field :name , class:"form_controll" %>
-  </div>
-</div>
 
-<div class="row g-2">
-  <div class="col-md-6">
+
     <%= f.label :percentage_fee, "Taxa por cobrança em %", class:"form_label" %>
+              <%= error_tag payment_method, :percentage_fee %>
     <%= f.text_field :percentage_fee , class:"form_controll" %>
-  </div>
-</div>
 
-<div class="row g-2">
-  <div class="col-md-6">
+
+
     <%= f.label :max_fee, "Taxa máxima em reais", class:"form_label" %>
+                  <%= error_tag payment_method, :max_fee %>
     <%= f.text_field :max_fee , class:"form_controll" %>
-  </div>
-</div>
 
 
-<div class="row g-2">
-  <div class="col-md-6">
+
+  <div class="input-group-btn">
     <%= f.submit button_text,  class:"btn btn-outline-dark btn-sm" %>
     <%= link_to t('links.back'), admin_root_path, class:"btn btn-outline-dark btn-sm" %>
-  </div>
 </div>
 <% end %>
 </div>

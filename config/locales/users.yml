@@ -4,7 +4,7 @@
       models:
         user:
           one: usuario(a)
-          other: Administradores(as)
+          other: usuario(as)
       attributes:
         user:
           password: Senha

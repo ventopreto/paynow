@@ -1,50 +1,41 @@
 
 <div class="card mx-auto" style="width: 15rem;">
   <div class="card-body">
-<%= form_with model: [:admin , company] do |f| %>
-  <% if company.errors.any? %>
-      <ul>
-        <% company.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+
+    <% if company.errors.any? %>
+      <div id="error-explanation">
+      </div>
   <% end %>
 
-<div class="row g-2">
-  <div class="col-md-6">
+<%= form_with model: [:admin , company] do |f| %>
+
     <%= f.label :cnpj, "CNPJ", class:"form_label" %>
+            <%= error_tag company, :cnpj %>
     <%= f.text_field :cnpj , class:"form_controll" %>
-  </div>
-</div>
 
-<div class="row g-2">
-  <div class="col-md-6">
+
+
     <%= f.label :corporate_name, "Razão Social", class:"form_label" %>
+                <%= error_tag company, :corporate_name %>
     <%= f.text_field :corporate_name , class:"form_controll" %>
-  </div>
-</div>
 
-<div class="row g-2">
-  <div class="col-md-6">
+
+
     <%= f.label :billing_address, "Endereço de faturamento", class:"form_label" %>
+                <%= error_tag company, :billing_address %>
     <%= f.text_field :billing_address , class:"form_controll" %>
-  </div>
-</div>
 
-<div class="row g-2">
-  <div class="col-md-6">
+
+
     <%= f.label :email, "E-mail para faturamento", class:"form_label" %>
+                <%= error_tag company, :email %>
     <%= f.text_field :email , class:"form_controll" %>
-  </div>
-</div>
 
-<div class="row g-2">
-  <div class="col-md-6">
+
+
     <%= f.submit button_text,  class:"btn btn-outline-dark btn-sm" %>
     <%= link_to t('links.back'), admin_root_path, class:"btn btn-outline-dark btn-sm" %>
-  </div>
-</div>
+
 <% end %>
   </div>
 </div>

@@ -33,10 +33,10 @@ describe 'User' do
     click_on 'Cadastrar'
 
 
-    expect(page).to have_content("CNPJ não pode ficar em branco")
-    expect(page).to have_content("Razão Social não pode ficar em branco")
-    expect(page).to have_content("Endereço de faturamento não pode ficar em branco")
-    expect(page).to have_content("E-mail para faturamento não pode ficar em branco")
+    expect(page).to have_content("não pode ficar em branco")
+    expect(page).to have_content("não pode ficar em branco")
+    expect(page).to have_content("não pode ficar em branco")
+    expect(page).to have_content("não pode ficar em branco")
   end
 
   it 'using public email and fail' do
@@ -52,7 +52,7 @@ describe 'User' do
     click_on 'Cadastrar'
 
 
-    expect(page).to have_content("E-mail para faturamento não é válido")
+    expect(page).to have_content("não é válido")
     end
   end
 end

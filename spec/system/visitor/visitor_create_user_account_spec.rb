@@ -23,9 +23,8 @@ describe 'Visitor' do
     click_on 'Registrar'
 
 
-    expect(page).to have_content("Email não pode ficar em branco")
-    expect(page).to have_content("Senha não pode ficar em branco")
-    expect(page).to have_content("Email não é válido")
+    expect(page).to have_content("não pode ficar em branco")
+    expect(page).to have_content("não pode ficar em branco")
   end
 
   it 'using public email and fail' do
@@ -37,7 +36,7 @@ describe 'Visitor' do
     click_on 'Registrar'
 
 
-    expect(page).to have_content("Email não é válido")
+    expect(page).to have_content("não é válido")
   end
     it 'with valid company email domain' do
       company = Company.create(email:'admin@codeplay.com.br', billing_address: 'Rua x, 420',

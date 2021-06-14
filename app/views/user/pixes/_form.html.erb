@@ -1,24 +1,25 @@
 <h1 class="text-center"><%= t('.title') %></h1>
 <div class="container">
 
+
+  <% if @pix.errors.any? %>
+  <div id="error-explanation">
+</div>
+<% end %>
+
+
 <div class="card mx-auto" style="width: 15rem;">
   <div class="card-body">
 <%= form_with model: [:user, @payment_method, @pix] do |f| %>
-  <% if @pix.errors.any? %>
-      <ul>
-        <% @pix.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
     <%= f.label :bank_code, "Código do Banco", class:"form_label" %>
+        <%= error_tag @pix, :bank_code %>
     <%= f.text_field :bank_code , class:"form_controll" %>
 
+
     <%= f.label :pix_key, "Chave Pix", class:"form_label" %>
+        <%= error_tag @pix, :bank_code %>
     <%= f.text_field :pix_key , class:"form_controll" %>
+
 
   <div class="input-group-btn">
     <%= f.submit button_text,  class:"btn btn-outline-success btn-sm" %>

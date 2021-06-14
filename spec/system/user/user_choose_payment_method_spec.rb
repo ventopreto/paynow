@@ -44,9 +44,9 @@ describe 'User' do
       fill_in 'Conta Bancária', with: ''
       click_on 'Criar'
   
-      expect(page).to have_content("Código do banco não pode ficar em branco")
-      expect(page).to have_content("Número da agência não pode ficar em branco")
-      expect(page).to have_content('Conta bancária não pode ficar em branco')
+      expect(page).to have_content("não pode ficar em branco")
+      expect(page).to have_content("não pode ficar em branco")
+      expect(page).to have_content('não pode ficar em branco')
 
     end
 
@@ -78,8 +78,8 @@ describe 'User' do
       fill_in 'Chave Pix', with: ''
       click_on 'Criar'
   
-      expect(page).to have_content('Chave Pix não pode ficar em branco')
-      expect(page).to have_content('Código do banco não pode ficar em branco')
+      expect(page).to have_content('não pode ficar em branco')
+      expect(page).to have_content('não pode ficar em branco')
     end
 
     it 'creditcard successfully' do
@@ -106,7 +106,7 @@ describe 'User' do
         fill_in 'Código Alfanumérico', with: ''
         click_on 'Criar'
     
-        expect(page).to have_content('Código Alfanumérico não pode ficar em branco')
+        expect(page).to have_content('não pode ficar em branco')
       end
   end
 end
