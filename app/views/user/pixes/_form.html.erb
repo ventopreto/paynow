@@ -1,6 +1,4 @@
-<h1 class="text-center"><%= t('.title') %></h1>
 <div class="container">
-
 
   <% if @pix.errors.any? %>
   <div id="error-explanation">
@@ -10,7 +8,7 @@
 
 <div class="card mx-auto" style="width: 15rem;">
   <div class="card-body">
-<%= form_with model: [:user, @payment_method, @pix] do |f| %>
+<%= form_with model: [:user, payment_method, pix] do |f| %>
     <%= f.label :bank_code, "Código do Banco", class:"form_label" %>
         <%= error_tag @pix, :bank_code %>
     <%= f.text_field :bank_code , class:"form_controll" %>

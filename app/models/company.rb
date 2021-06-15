@@ -1,7 +1,11 @@
 class Company < ApplicationRecord
   before_create :generate_token
   has_many :users
+  has_many :products
   has_many :company_payments
+  has_many :boletos
+  has_many :pixes
+  has_many :credit_cards
   has_many :payment_methods, through: :company_payments
   after_save :set_domain
   validates :email, :cnpj, :corporate_name, :billing_address, presence: true
@@ -10,6 +14,7 @@ class Company < ApplicationRecord
 
 
 end
+
 
 def set_domain
   self.update_column(:email_domain, self.email.split('@')[1])

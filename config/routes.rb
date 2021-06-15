@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
     resources :companies, only: %i[new create show] do
       resources :chosen_payments, only: %i[index]
+      resources :products, except: %i[destroy put]
     patch 'update_token', on: :member
     end
 

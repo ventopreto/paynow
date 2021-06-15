@@ -1,9 +1,10 @@
 class User::ChosenPaymentsController < User::UserController
 
   def index
-    @boletos = Boleto.all
-    @creditcards = CreditCard.all
-    @pixes = Pix.all
+    @company = current_user.company
+    @boletos = @company.boletos
+    @creditcards = @company.credit_cards
+    @pixes = @company.pixes
   end
 
   def show

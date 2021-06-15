@@ -12,7 +12,7 @@
     user:
         credit_card:
           new:
-            title: Formulário
-            submit: Criar
-
+            title: Formulário de Criação
+          edit:
+            title: Formulário de Atualização
               

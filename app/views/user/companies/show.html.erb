@@ -1,13 +1,33 @@
-
+<div class="card-group">
   <div class="card border border-5 mt-3" style="width: 27rem;">
   <div class="card-body">
   <h5 class="card-title">Nome: <%= @company.cnpj %> </h5>
   <p class="card-text">Razão Social:   <%= @company.corporate_name %> </p>
   <p class="card-text">Endereço de Faturamento:   <%= @company.billing_address %> </p>
   <p class="card-text">Dominio da empresa:  <%= @company.email_domain %> </p>
-  <p class="card-text">Token:  > <%= @company.token %> </p>
+  <p class="card-text">Token:  <%= @company.token %> </p>
 
   <% if current_user.admin? %>
   <%= link_to 'Gerar Novo Token', update_token_user_company_path, method: :patch, class:"btn btn-outline-dark" %>
   <% end %>
-  <%= link_to 'Voltar', root_path, class:"btn btn-outline-dark" %>
+  </div>
+</div>
+
+  <div class="card border border-5 mt-3" style="width: 27rem;">
+  <% if @products.empty? %>
+    <p class="text-center"> Nenhum Produto Cadastrado </p>
+  <% else %>
+  <% @products.each do |product| %>
+  <div class="card-body">
+  <h5 class="card-title">Nome: <%= link_to product.name, user_company_product_path(product) %> </h5>
+  <% end %>
+  <% end %>
+          <%= link_to 'Cadastrar Produto', new_user_company_product_path(@company), class:"btn btn-outline-dark" %>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+          <%= link_to 'Voltar', root_path, class:"btn btn-outline-dark" %>
+    </div>
+
+

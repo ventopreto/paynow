@@ -13,7 +13,10 @@
     user:
         boletos:
           new:
-            title: Formulário
-            submit: Enviar
+            title: Formulário de Criação
+          edit:
+            title: Formulário de Atualização
+
+
 
               

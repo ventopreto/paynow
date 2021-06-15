@@ -1,0 +1,26 @@
+<div class="container">
+<div class="card mx-auto" style="width: 15rem;">
+  <div class="card-body">
+    <%= form_with model: [:user, company, product]  do |f| %>
+        <%= f.label :name, "Nome do Produto", class:"form_label" %>
+            <%= error_tag @product, :name %>
+        <%= f.text_field :name , class:"form_controll" %>
+
+        <%= f.label :price, "Preço", class:"form_label" %>
+            <%= error_tag @product, :price %>
+        <%= f.text_field :price , class:"form_controll" %>
+
+        <%= f.label :discount, "Desconto", class:"form_label" %>
+            <%= error_tag @product, :discount %>
+        <%= f.text_field :discount , class:"form_controll" %>
+
+        <div class="input-group-btn">
+          <%= f.submit button_text,  class:"btn btn-outline-success btn-sm" %>
+          <%= link_to t('links.back'), root_path, class:"btn btn-outline-dark btn-sm" %>
+      </div>
+  <% end %>
+</div>
+
+
+
+

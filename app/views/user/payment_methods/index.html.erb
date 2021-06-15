@@ -1,3 +1,4 @@
+<div class="container">
 <% if @payment_methods.empty?%>
   <p>Nenhum Meio de Pagamento Disponivel</p>
 <% else %>
@@ -5,14 +6,17 @@
 
 <div class="text-center">
 <h1>Meios de Pagamento Disponiveis</h1>
-      <div class="card-body border border-dark">
+      <div class="card-body border border-dark row">
         <% @payment_methods.each do |payment_method| %>
-        <div class="card col-3 text-center">
+        <div class="card col-4 text-center">
         <h5 class="card-title"><%= image_tag payment_method.icon, size: '50' %><%= link_to "#{payment_method.category} #{payment_method.name}", [:user, payment_method] %></h5>
         </div>
         <% end %>
       </div>
+
 <% end %>
 
+
   <%= link_to 'Voltar', root_path, class:"btn btn-outline-dark mx-auto" %>
+      </div>
 </div>

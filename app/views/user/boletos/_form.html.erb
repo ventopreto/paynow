@@ -9,7 +9,7 @@
 
 <div class="card mx-auto" style="width: 15rem;">
   <div class="card-body">
-<%= form_with model: [:user, @payment_method, @boleto] do |f| %>
+<%= form_with model: [:user, payment_method, boleto] do |f| %>
 
 
     <%= f.label :bank_code, "Código do Banco", class:"form_label" %>

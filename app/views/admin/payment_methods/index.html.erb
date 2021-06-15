@@ -1,15 +1,16 @@
-<h1>Pagina de gerenciamento de metodos de pagamento</h1>
-  <div class="card border border-5 mt-3" style="width: 27rem;">
-  <div class="card-body">
-
-<% @payment_methods.each do |payment_method| %>
-  <% if payment_method.icon.attached? %>
-<%= image_tag payment_method.icon, size: '25' %>
-<% end %>
-<%= link_to payment_method.name, [:admin, payment_method] %>
-<% end %>
+<div class="container">
+<div class="text-center">
+<h1>Gerenciamento de metodos de pagamento</h1>
+      <div class="card-body border border-dark row">
+        <% @payment_methods.each do |payment_method| %>
+        <div class="card col-4 text-center">
+        <%= image_tag payment_method.icon, size: '25', class:'mx-auto' %>
+        <h5 class="card-title"><%= link_to "#{payment_method.category} #{payment_method.name}", [:admin, payment_method] %></h5>
+        </div>
+        <% end %>
+      </div>
 
 
 <%= link_to 'Cadastrar Metodo de Pagamento', new_admin_payment_method_path, class:"btn btn-outline-dark" %>
 <%= link_to 'Voltar', admin_root_path, class:"btn btn-outline-dark" %>
-
+</div>

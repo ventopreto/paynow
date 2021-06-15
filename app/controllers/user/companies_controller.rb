@@ -17,6 +17,7 @@ class User::CompaniesController < User::UserController
 
   def show
   @company = Company.find(params[:id])
+  @products = @company.products
   end
 
 def update_token
@@ -26,6 +27,8 @@ def update_token
     redirect_to [:user, @company]
   end
 end
+
+
 
 private
 

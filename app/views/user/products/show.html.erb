@@ -1,0 +1,13 @@
+
+  <div class="card border border-5 mt-3 mx-auto" style="width: 27rem;">
+  <div class="card-body text-justify mx-auto">
+    <h5 class="card-title">Nome: <%= @product.name %></h5>
+    <p class="card-text">Preço: <%= number_to_currency(@product.price) %> </p>
+    <% if @product.discount %>
+      <p class="card-text">Desconto: <%= "#{@product.discount}% " %> </p>
+
+    <% end %>
+    <p class="card-text">Token: <%= @product.token%></p>
+
+  <%= link_to 'Editar', edit_user_company_product_path(@product), class:"btn btn-outline-dark" %>
+  <%= link_to 'Voltar', user_company_chosen_payments_path(@product.company_id), class:"btn btn-outline-dark" %>
