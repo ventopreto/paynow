@@ -6,11 +6,13 @@ class User::PixesController < User::UserController
   end
 
   def create
+    @company = current_user.company
     @payment_method = PaymentMethod.find(params[:payment_method_id])
     @pix = Pix.create(pix_params)
     @pix.company = current_user.company
     @pix.payment_method = @payment_method
     if @pix.save
+      CompanyPayment.create(company: @company, payment_method:@payment_method)
       redirect_to user_payment_method_pix_path(@payment_method, @pix)
     else
       render :new

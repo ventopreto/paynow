@@ -6,11 +6,13 @@ class User::BoletosController < User::UserController
   end
 
   def create
+    @company = current_user.company
     @payment_method = PaymentMethod.find(params[:payment_method_id])
     @boleto = Boleto.new(boleto_params)
     @boleto.company = current_user.company
     @boleto.payment_method = @payment_method
     if @boleto.save
+      CompanyPayment.create(company: @company, payment_method:@payment_method)
       redirect_to user_payment_method_boleto_path(@payment_method, @boleto)
     else
       render :new

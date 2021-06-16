@@ -2,7 +2,7 @@ class PaymentMethod < ApplicationRecord
   has_one_attached :icon
   validates :name, :max_fee, :percentage_fee, presence: true
   has_many :boletos
-  has_many :pix
+  has_many :pixes
   has_many :company_payments
   has_many :companies, through: :company_payments
   has_many :credit_cards

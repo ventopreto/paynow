@@ -6,11 +6,13 @@ class User::CreditCardsController < User::UserController
   end
 
   def create
+    @company = current_user.company
     @payment_method = PaymentMethod.find(params[:payment_method_id])
     @creditcard = CreditCard.new(credit_card_params)
     @creditcard.company = current_user.company
     @creditcard.payment_method = @payment_method
     if @creditcard.save
+      CompanyPayment.create(company: @company, payment_method:@payment_method)
       redirect_to user_payment_method_credit_card_path(@payment_method, @creditcard)
     else
       render :new

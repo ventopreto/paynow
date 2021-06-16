@@ -3,22 +3,34 @@
 <div class="card-group border border-dark">
 		<div class="card-body border border-dark">
       		<h3 class="card-title text-center">Boletos</h3>
+					<% if @boletos.empty? %>
+						<p>Nenhum Boleto</p>
+					<% else %>
 				<% @boletos.each do |boleto| %>
-						<td><h5 class="card-text text-center"><%= image_tag boleto.payment_method.icon, size: '25' %><%= link_to "#{boleto.payment_method.category} #{boleto.payment_method.name}", user_payment_method_boleto_path(boleto.payment_method.id, boleto)%></h5></td>
+				<h5 class="card-text text-center"><%= image_tag boleto.payment_method.icon, size: '25' %><%= link_to "#{boleto.payment_method.category} #{boleto.payment_method.name}", user_payment_method_boleto_path(boleto.payment_method, boleto)%></h5></td>
 				<% end %>
 			</div>
+				<% end %>	
+					<% if @pixes.empty? %>
+						<p>Nenhum Pix</p>
+					<% else %>
 			<div class="card-body border border-dark">
 				<h3 class="card-title text-center">Pix</h3>
 					<% @pixes.each do |pix| %>
-						<td><h5 class="card-text text-center"><%= image_tag pix.payment_method.icon, size: '25' %><%= link_to "#{pix.payment_method.category} #{pix.payment_method.name}", user_payment_method_pix_path(pix.payment_method.id, pix)%></h5></td>
+						<td><h5 class="card-text text-center"><%= image_tag pix.payment_method.icon, size: '25' %><%= link_to "#{pix.payment_method.category} #{pix.payment_method.name}", user_payment_method_pix_path(pix.payment_method, pix)%></h5></td>
 					<% end %>
 				</div>
+			<% end %>
+					<% if @pixes.empty? %>
+						<p>Nenhum Cartão de Credito</p>
+					<% else %>
 			<div class="card-body border border-dark">
 				<h3 class="card-title text-center">Cartões</h3>
 					<% @creditcards.each do |creditcard| %>
-						<td><h5 class="card-text text-center"><%= image_tag creditcard.payment_method.icon, size: '25' %><%= link_to "#{creditcard.payment_method.category} #{creditcard.payment_method.name}", user_payment_method_credit_card_path(creditcard.payment_method.id, creditcard)%></h5></td>
+						<h5 class="card-text text-center"><%= image_tag creditcard.payment_method.icon, size: '25' %><%= link_to "#{creditcard.payment_method.category} #{creditcard.payment_method.name}", user_payment_method_credit_card_path(creditcard.payment_method.id, creditcard)%></h5></td>
 					<% end %>
 				</div>
+				<% end %>
 			</div>
 		</div>
 
