@@ -3,6 +3,13 @@ Rails.application.routes.draw do
   devise_for :admins, path: 'admins'
   root to: "home#index"
 
+  namespace :api do
+    namespace :v1 do
+      resources :end_users, only: %i[create]
+      end
+    end
+
+
 
   namespace :user do
     resources :payment_methods do
