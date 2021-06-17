@@ -35,20 +35,17 @@ describe 'Visitor' do
     fill_in "Confirmação de senha", with: '123456'
     click_on 'Registrar'
 
-
     expect(page).to have_content("não é válido")
   end
     it 'with valid company email domain' do
-      company = Company.create(email:'admin@codeplay.com.br', billing_address: 'Rua x, 420',
+      company = Company.create!(email:'admin@codeplay.com.br', billing_address: 'Rua x, 420',
                                                     corporate_name: 'Codeplay', cnpj:12345678910110)
-  
       visit root_path
       click_on 'Cadastre-se'
       fill_in "Email", with: 'employer@codeplay.com.br'
       fill_in "Senha", with: '123456'
       fill_in "Confirmação de senha", with: '123456'
       click_on 'Registrar'
-  
       expect(User.last.company_id).to eq(company.id)
       expect(page).to have_content('Meios de Pagamento Disponiveis')
       expect(page).to have_content('Dados da Empresa')

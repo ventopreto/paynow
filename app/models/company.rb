@@ -1,5 +1,7 @@
 class Company < ApplicationRecord
   before_create :generate_token
+  has_many :company_end_users
+  has_many :end_users, through: :company_end_users
   has_many :users
   has_many :products
   has_many :company_payments
