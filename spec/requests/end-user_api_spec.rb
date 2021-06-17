@@ -28,7 +28,10 @@ describe 'End User API' do
     end
 
     it 'should not create a duplicated end_user' do
-      EndUser.create(fullname: 'Mateus Bruno Abreu', cpf: 12345678910)
+      another_company = Company.create!(cnpj: 12345678910110, corporate_name: 'Codeplay', 
+      billing_address: 'Rua x, 420', email: 'admin@xbox.com.br' )
+      end_user  = EndUser.create!(fullname: 'Mateus Bruno Abreu', cpf: 12345678910)
+      CompanyEndUser.create!(company: another_company, end_user: end_user)
       company = Company.create(cnpj: 12345678910110, corporate_name: 'Xbox', 
       billing_address: 'Rua x, 420', email: 'admin@xbox.com.br' )
       

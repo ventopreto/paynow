@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_17_033420) do
+ActiveRecord::Schema.define(version: 2021_06_17_093906) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,6 +62,31 @@ ActiveRecord::Schema.define(version: 2021_06_17_033420) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_boletos_on_company_id"
     t.index ["payment_method_id"], name: "index_boletos_on_payment_method_id"
+  end
+
+  create_table "charges", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "company_id", null: false
+    t.string "token"
+    t.string "status"
+    t.decimal "original_value"
+    t.decimal "value_with_discount"
+    t.integer "boleto_id", null: false
+    t.integer "pix_id", null: false
+    t.integer "credit_card_id", null: false
+    t.integer "payment_method_id", null: false
+    t.integer "credit_card_number"
+    t.string "cardholder_name"
+    t.integer "cvv"
+    t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["boleto_id"], name: "index_charges_on_boleto_id"
+    t.index ["company_id"], name: "index_charges_on_company_id"
+    t.index ["credit_card_id"], name: "index_charges_on_credit_card_id"
+    t.index ["end_user_id"], name: "index_charges_on_end_user_id"
+    t.index ["payment_method_id"], name: "index_charges_on_payment_method_id"
+    t.index ["pix_id"], name: "index_charges_on_pix_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -162,6 +187,12 @@ ActiveRecord::Schema.define(version: 2021_06_17_033420) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "boletos", "companies"
   add_foreign_key "boletos", "payment_methods"
+  add_foreign_key "charges", "boletos"
+  add_foreign_key "charges", "companies"
+  add_foreign_key "charges", "credit_cards"
+  add_foreign_key "charges", "end_users"
+  add_foreign_key "charges", "payment_methods"
+  add_foreign_key "charges", "pixes"
   add_foreign_key "company_end_users", "companies"
   add_foreign_key "company_end_users", "end_users"
   add_foreign_key "company_payments", "companies"
