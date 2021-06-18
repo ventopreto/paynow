@@ -15,15 +15,16 @@ class Company < ApplicationRecord
   validates :cnpj, length: {is: 14}
 
 
+  def set_domain
+    self.update_column(:email_domain, self.email.split('@')[1])
+  end
+  
+  def generate_token
+    self.token = SecureRandom.base64(20)
+  end
+  
 end
 
 
-def set_domain
-  self.update_column(:email_domain, self.email.split('@')[1])
-end
-
-def generate_token
-  self.token = SecureRandom.base64(20)
-end
 
 

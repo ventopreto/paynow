@@ -7,9 +7,9 @@ class CreateCharges < ActiveRecord::Migration[6.1]
       t.string :status
       t.decimal :original_value
       t.decimal :value_with_discount
-      t.references :boleto, null: false, foreign_key: true
-      t.references :pix, null: false, foreign_key: true
-      t.references :credit_card, null: false, foreign_key: true
+      t.references :boleto, null: true, foreign_key: true
+      t.references :pix, null: true, foreign_key: true
+      t.references :credit_card, null: true, foreign_key: true
       t.references :payment_method, null: false, foreign_key: true
       t.integer :credit_card_number
       t.string :cardholder_name

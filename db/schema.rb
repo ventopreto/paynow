@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_17_093906) do
+ActiveRecord::Schema.define(version: 2021_06_18_063740) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -71,9 +71,9 @@ ActiveRecord::Schema.define(version: 2021_06_17_093906) do
     t.string "status"
     t.decimal "original_value"
     t.decimal "value_with_discount"
-    t.integer "boleto_id", null: false
-    t.integer "pix_id", null: false
-    t.integer "credit_card_id", null: false
+    t.integer "boleto_id"
+    t.integer "pix_id"
+    t.integer "credit_card_id"
     t.integer "payment_method_id", null: false
     t.integer "credit_card_number"
     t.string "cardholder_name"
@@ -81,12 +81,14 @@ ActiveRecord::Schema.define(version: 2021_06_17_093906) do
     t.string "address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "product_id", null: false
     t.index ["boleto_id"], name: "index_charges_on_boleto_id"
     t.index ["company_id"], name: "index_charges_on_company_id"
     t.index ["credit_card_id"], name: "index_charges_on_credit_card_id"
     t.index ["end_user_id"], name: "index_charges_on_end_user_id"
     t.index ["payment_method_id"], name: "index_charges_on_payment_method_id"
     t.index ["pix_id"], name: "index_charges_on_pix_id"
+    t.index ["product_id"], name: "index_charges_on_product_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -193,6 +195,7 @@ ActiveRecord::Schema.define(version: 2021_06_17_093906) do
   add_foreign_key "charges", "end_users"
   add_foreign_key "charges", "payment_methods"
   add_foreign_key "charges", "pixes"
+  add_foreign_key "charges", "products"
   add_foreign_key "company_end_users", "companies"
   add_foreign_key "company_end_users", "end_users"
   add_foreign_key "company_payments", "companies"

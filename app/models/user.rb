@@ -7,11 +7,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :email, format:{with: /[^@]+@(?!gmail|yahoo|hotmail|paynow)[^@]+\.[^@]*/}
   enum role: { employer: 0, admin: 1}
-end
 
-def set_employer
-  company = Company.where(email_domain: self.email.split('@')[1])
-if company[0] != nil
-  self.update_column(:company_id, company[0].id)
+  def set_employer
+    company = Company.where(email_domain: self.email.split('@')[1])
+  if company[0] != nil
+    self.update_column(:company_id, company[0].id)
+    end
   end
 end
+
