@@ -37,6 +37,7 @@ describe 'Charge API' do
       expect(response.content_type).to include('application/json')
       expect(response.parsed_body["end_user_id"]).to eq(1)
       expect(response.parsed_body["original_value"]).to eq("30.0")
+      expect(response.parsed_body["value_with_discount"]).to eq("27.0")
       expect(response.parsed_body["boleto_id"]).to eq(1)
       expect(response.parsed_body["payment_method_id"]).to eq(1)
       expect(Charge.last.product).to eq(product)
@@ -59,12 +60,14 @@ describe 'Charge API' do
              payment_category:pix.payment_method.category
            }
        }
+
        
         expect(response).to have_http_status(201)
         expect(Charge.count).to eq(1)
         expect(response.content_type).to include('application/json')
         expect(response.parsed_body["end_user_id"]).to eq(1)
         expect(response.parsed_body["original_value"]).to eq("30.0")
+        expect(response.parsed_body["value_with_discount"]).to eq("28.5")
         expect(response.parsed_body["pix_id"]).to eq(1)
         expect(response.parsed_body["payment_method_id"]).to eq(3)
         expect(Charge.last.product).to eq(product)
@@ -95,6 +98,7 @@ describe 'Charge API' do
           expect(response.content_type).to include('application/json')
           expect(response.parsed_body["end_user_id"]).to eq(1)
           expect(response.parsed_body["original_value"]).to eq("30.0")
+          expect(response.parsed_body["value_with_discount"]).to eq("30.0")
           expect(response.parsed_body["credit_card_id"]).to eq(1)
           expect(response.parsed_body["payment_method_id"]).to eq(2)
           expect(Charge.last.product).to eq(product)
@@ -123,6 +127,7 @@ describe 'Charge API' do
            payment:boleto.id,
            address: "Rua tal 42",
            payment_category:boleto.payment_method.category
+  
          }
      }
 
