@@ -122,7 +122,7 @@ describe 'Back button' do
           end
 
         it 'of payment_method_ details should redirect to chosen payments page' do
-          Pix.create!(bank_code: 103, pix_key: 12345678, company: company, payment_method:payment_method_pix)
+          Pix.create!(bank_code: 103, pix_key: 12345678909876543210, company: company, payment_method:payment_method_pix)
           login_as user, scope: :user
           visit root_path
           click_on 'Meios de Pagamento Escolhidos'
@@ -132,7 +132,7 @@ describe 'Back button' do
           end
 
           it 'of payment_method_ form should redirect to root path' do
-            Pix.create!(bank_code: 103,pix_key: 12345678, company: company, payment_method:payment_method_pix)
+            Pix.create!(bank_code: 103,pix_key: 12345678909876543210, company: company, payment_method:payment_method_pix)
             login_as user, scope: :user
             visit root_path
             click_on 'Meios de Pagamento Escolhidos'

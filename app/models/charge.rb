@@ -1,4 +1,5 @@
 class Charge < ApplicationRecord
+  before_create :generate_token
   belongs_to :end_user
   belongs_to :company
   belongs_to :boleto, optional: true
@@ -13,8 +14,12 @@ class Charge < ApplicationRecord
   validates :credit_card_number, length: { is: 16 }, if: :paid_with_card?
   validates :cvv, length: { in: 3..4 }, if: :paid_with_card?
   enum payment_category: { Pix:0, Boleto:1, Cartão:2}
+  enum status: { Pendente:0, Aprovada:1, Rejeitada:2}
 
 
+  def generate_token
+    self.token = SecureRandom.base64(15)
+  end
 
   def paid_with_pix?
     self.payment_category == 'Pix'

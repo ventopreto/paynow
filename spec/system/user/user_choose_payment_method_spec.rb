@@ -57,14 +57,14 @@ describe 'User' do
     click_on 'Pix Banco Roxinho'
     click_on 'Adicionar esse meio de pagamento'
     fill_in 'Código do Banco', with: 103
-    fill_in 'Chave Pix', with: 1254545
+    fill_in 'Chave Pix', with: 12345678909876543210
     click_on 'Criar'
 
     expect(page).to have_content("Nome: Pix Banco Roxinho")
     expect(page).to have_content("Taxa(%): 10.0")
     expect(page).to have_content("Taxa Maxima: R$ 5,00")
     expect(page).to have_content('Código do Banco: 103')
-    expect(page).to have_content('Chave Pix: 1254545')
+    expect(page).to have_content('Chave Pix: 12345678909876543210')
     
 
     end
@@ -88,13 +88,13 @@ describe 'User' do
       click_on 'Meios de Pagamento Disponiveis'
       click_on 'Cartão Nubank'
       click_on 'Adicionar esse meio de pagamento'
-      fill_in 'Código Alfanumérico', with: 123456789
+      fill_in 'Código Alfanumérico', with: 12345678901234567890
       click_on 'Criar'
   
       expect(page).to have_content("Nome: Cartão Nubank")
       expect(page).to have_content("Taxa(%): 10.0")
       expect(page).to have_content("Taxa Maxima: R$ 5,00")
-      expect(page).to have_content("Código Alfanumérico: 123456789")
+      expect(page).to have_content("Código Alfanumérico: 123456789012345678")
 
       end
       it 'credit card with blank fields' do

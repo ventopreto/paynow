@@ -40,6 +40,7 @@ describe 'Charge API' do
       expect(response.parsed_body["value_with_discount"]).to eq("27.0")
       expect(response.parsed_body["boleto_id"]).to eq(1)
       expect(response.parsed_body["payment_method_id"]).to eq(1)
+      expect(response.parsed_body["token"].size).to eq(20)
       expect(Charge.last.product).to eq(product)
     end
 
@@ -70,6 +71,7 @@ describe 'Charge API' do
         expect(response.parsed_body["value_with_discount"]).to eq("28.5")
         expect(response.parsed_body["pix_id"]).to eq(1)
         expect(response.parsed_body["payment_method_id"]).to eq(3)
+        expect(response.parsed_body["token"].size).to eq(20)
         expect(Charge.last.product).to eq(product)
       end
 
@@ -101,6 +103,7 @@ describe 'Charge API' do
           expect(response.parsed_body["value_with_discount"]).to eq("30.0")
           expect(response.parsed_body["credit_card_id"]).to eq(1)
           expect(response.parsed_body["payment_method_id"]).to eq(2)
+          expect(response.parsed_body["token"].size).to eq(20)
           expect(Charge.last.product).to eq(product)
         end
 

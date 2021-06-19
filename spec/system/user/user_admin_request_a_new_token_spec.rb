@@ -13,7 +13,7 @@ describe 'User' do
     click_on 'Gerar Novo Token'
 
     expect(page).to_not have_content(current_token)
-    expect(company.token.size).to eq(28)
+    expect(company.token.size).to eq(20)
     end
 
     it 'Non admin should not request a new token' do
@@ -29,7 +29,7 @@ describe 'User' do
 
     expect(page).to_not have_content('Gerar Novo Token')
     expect(page).to have_content(current_token)
-    expect(company.token.size).to eq(28)
+    expect(company.token.size).to eq(20)
   end
 end
 

@@ -14,7 +14,7 @@ describe CreditCard do
     end
 
     it 'success register a boleto' do
-      token = SecureRandom.base64(20)
+      token = SecureRandom.base64(15)
       codeplay =Company.create(email: 'codeplay@codeplay.com.br', cnpj: 12345678910110, 
       billing_address:'Rua Tal, 50, Centro',
       corporate_name: 'codeplay ltda')
@@ -23,7 +23,7 @@ describe CreditCard do
   
       cartão.valid?
   
-      expect(cartão.token).to eq(token)
+      expect(cartão.token.size).to eq(20)
       expect(cartão).to be_valid
     end
   end

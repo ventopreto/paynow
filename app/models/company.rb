@@ -10,6 +10,7 @@ class Company < ApplicationRecord
   has_many :credit_cards
   has_many :payment_methods, through: :company_payments
   after_save :set_domain
+  validates :email, :cnpj, :corporate_name, uniqueness: true
   validates :email, :cnpj, :corporate_name, :billing_address, presence: true
   validates :email, format:{ with: /[^@\s]+@(?!gmail|yahoo|hotmail|paynow)[^@]+\.[^@]*/}
   validates :cnpj, length: {is: 14}
@@ -20,9 +21,8 @@ class Company < ApplicationRecord
   end
   
   def generate_token
-    self.token = SecureRandom.base64(20)
-  end
-  
+    self.token = SecureRandom.base64(15) 
+    end
 end
 
 
