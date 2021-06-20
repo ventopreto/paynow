@@ -20,8 +20,9 @@ class User::PixesController < User::UserController
   end
 
   def show
-  @payment_method = PaymentMethod.find(params[:payment_method_id])
-  @pix = Pix.find(params[:id])
+    @company = current_user.company
+    @payment_method = PaymentMethod.find(params[:payment_method_id])
+    @pix = Pix.find(params[:id])
   end
 
   def edit

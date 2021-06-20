@@ -10,18 +10,17 @@ Rails.application.routes.draw do
       end
     end
 
-
-
   namespace :user do
     resources :payment_methods do
       resources :boletos, except: %i[destroy put]
       resources :pixes, except: %i[destroy put]
       resources :credit_cards, except: %i[destroy put]
     end
-    resources :companies, only: %i[new create show] do
+    resources :companies, only: %i[new create show], param: :token do  
       resources :chosen_payments, only: %i[index]
       resources :products, except: %i[destroy put]
-    patch 'update_token', on: :member
+      resources :charges, only: %i[show index edit update], param: :token
+      patch 'update_token', on: :member
     end
 
   end

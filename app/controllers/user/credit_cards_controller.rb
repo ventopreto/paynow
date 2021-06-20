@@ -20,7 +20,8 @@ class User::CreditCardsController < User::UserController
   end
 
   def show
-  @creditcard = CreditCard.find(params[:id])
+    @company = current_user.company
+    @creditcard = CreditCard.find(params[:id])
   end
 
   def edit

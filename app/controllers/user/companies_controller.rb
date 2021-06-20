@@ -9,22 +9,22 @@ class User::CompaniesController < User::UserController
     if @company.save
       set_admin
       set_company_id
-      redirect_to [:user, @company]
+      redirect_to user_company_path(@company.token)
     else
       render :new
     end
   end
 
   def show
-  @company = Company.find(params[:id])
+  @company = current_user.company
   @products = @company.products
   end
 
 def update_token
-  @company = Company.find(params[:id])
+  @company = current_user.company
   @company.token = SecureRandom.base64(20)
   if @company.save
-    redirect_to [:user, @company]
+    redirect_to user_company_path(@company.token)
   end
 end
 

@@ -8,6 +8,7 @@ class Company < ApplicationRecord
   has_many :boletos
   has_many :pixes
   has_many :credit_cards
+  has_many :charges
   has_many :payment_methods, through: :company_payments
   after_save :set_domain
   validates :email, :cnpj, :corporate_name, uniqueness: true

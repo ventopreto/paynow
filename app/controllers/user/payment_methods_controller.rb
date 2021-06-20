@@ -13,9 +13,11 @@
 end
 
   private
-
-  def category_with_name
+  
+  def payment_category_with_name
     "#{@payment_method.category} #{@payment_method.name}"
-end
+  end
+
+
 
 

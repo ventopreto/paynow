@@ -1,5 +1,5 @@
 <h1 class="text-center"><%= t('.title') %> </h1>
-<%= render partial: 'form', locals: {product: @product, company: @company, button_text: 'Criar'}%>
+<%= render partial: 'form', locals: {product: @product, company: @company, url: user_company_products_path(@company.token), button_text: 'Criar'}%>
 
 
 

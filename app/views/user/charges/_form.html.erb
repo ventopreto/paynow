@@ -1,0 +1,33 @@
+<div class="container">
+
+  <% if charge.errors.any? %>
+  <div id="error-explanation">
+</div>
+<% end %>
+
+
+<div class="card mx-auto" style="width: 30rem;">
+  <div class="card-body">
+<%= form_with url: user_company_charge_path(company.token, charge.token), model: [:user, company, charge] do |f| %>
+    <%= f.label :status, "Status", class:"form_label" %>
+        <%= error_tag charge, :status %>
+<%= f.select(:status, charges.statuses.keys.map {|type| [charges.human_enum_name(:statuses, type),type]}, class:"form-control") %>
+
+    <%= f.label :effective_payment_date, "Data efetiva do pagamento", class:"form_label" %>
+        <%= error_tag charge, :effective_payment_date %>
+    <%= f.date_field :effective_payment_date , class:"form_controll" %>
+
+    <%= f.label :payment_attempt_date, "Data da tentativa", class:"form_label" %>
+        <%= error_tag charge, :payment_attempt_date %>
+    <%= f.date_field :payment_attempt_date , class:"form_controll" %>
+
+  <div class="input-group-btn">
+    <%= f.submit button_text,  class:"btn btn-outline-success btn-sm" %>
+    <%= link_to t('links.back'), root_path, class:"btn btn-outline-dark btn-sm" %>
+</div>
+<% end %>
+</div>
+
+
+
+

@@ -1,7 +1,7 @@
 <div class="container">
 <div class="card mx-auto" style="width: 15rem;">
   <div class="card-body">
-    <%= form_with model: [:user, company, product]  do |f| %>
+    <%= form_with url: url, model: [:user, company, product]  do |f| %>
         <%= f.label :name, "Nome do Produto", class:"form_label" %>
             <%= error_tag @product, :name %>
         <%= f.text_field :name , class:"form_controll" %>

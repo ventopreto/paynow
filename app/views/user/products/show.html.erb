@@ -10,4 +10,4 @@
     <p class="card-text">Token: <%= @product.token%></p>
 
   <%= link_to 'Editar', edit_user_company_product_path(@product), class:"btn btn-outline-dark" %>
-  <%= link_to 'Voltar', user_company_path(@product.company_id), class:"btn btn-outline-dark" %>
+  <%= link_to 'Voltar', user_company_path(@company.token), class:"btn btn-outline-dark" %>

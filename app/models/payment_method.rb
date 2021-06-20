@@ -10,7 +10,6 @@ class PaymentMethod < ApplicationRecord
 
   before_save :set_icons
 
-
   def set_icons
     if PaymentMethod.new.icon.blank?
     case category

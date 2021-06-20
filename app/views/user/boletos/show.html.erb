@@ -10,4 +10,4 @@
     <p class="card-text"> Conta Bancária: <%= @boleto.bank_account%></p>
 
   <%= link_to 'Editar', edit_user_payment_method_boleto_path(@boleto), class:"btn btn-outline-dark" %>
-  <%= link_to 'Voltar', user_company_chosen_payments_path(@boleto.company_id), class:"btn btn-outline-dark" %>
+  <%= link_to 'Voltar', user_company_chosen_payments_path(@company.token), class:"btn btn-outline-dark" %>

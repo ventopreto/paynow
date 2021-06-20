@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_19_055638) do
+ActiveRecord::Schema.define(version: 2021_06_20_045115) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -83,6 +83,9 @@ ActiveRecord::Schema.define(version: 2021_06_19_055638) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "product_id", null: false
     t.integer "payment_category", null: false
+    t.date "effective_payment_date"
+    t.date "payment_attempt_date"
+    t.string "last_status"
     t.index ["boleto_id"], name: "index_charges_on_boleto_id"
     t.index ["company_id"], name: "index_charges_on_company_id"
     t.index ["credit_card_id"], name: "index_charges_on_credit_card_id"

@@ -1,0 +1,24 @@
+<h1 class="text-center">Meios de Pagamento Escolhidos</h1>
+
+<div class="card-group border border-dark">
+		<div class="card-body border border-dark">
+      		<h3 class="card-title text-center">Cobranças</h3>
+					<% if @charges.empty? %>
+						<p>Nenhuma Cobrança</p>
+					<% else %>
+				<% @charges.each do |charge| %>
+				<p class="card-text text-center">
+        <%= link_to "Atualizar #{charge.token}", edit_user_company_charge_path(@company.token, charge.token) %>
+				<p>Status<%= charge.status %></p>
+        <p>Valor:<%= charge.value_with_discount %></p>
+        <p>Tipo de Pagamento<%= charge.payment_category %></p>
+				</p>
+        <% end %>
+        <% end %>
+
+<div class="col text-center">
+	<%= link_to 'Voltar', root_path, class:"btn btn-outline-dark mx-auto" %>
+</div>
+
+
+

@@ -1,7 +1,7 @@
 class User::ProductsController < User::UserController
 
   def new
-    @company = Company.find(params[:company_id])
+    @company = current_user.company
     @product = Product.new
   end
 
@@ -10,7 +10,7 @@ class User::ProductsController < User::UserController
     @product = Product.new(product_params)
     @product.company = current_user.company
     if  @product.save
-      redirect_to [:user, @company, @product]
+      redirect_to user_company_product_path(@company.token, @product)
     else
       render :new
     end
@@ -19,11 +19,12 @@ class User::ProductsController < User::UserController
 
   def show
     @product = Product.find(params[:id])
+    @company = current_user.company
   end
 
 
   def edit
-    @company = Company.find(params[:company_id])
+    @company = current_user.company
     @product = Product.find(params[:id])
   end
 
@@ -32,7 +33,7 @@ class User::ProductsController < User::UserController
     @product = Product.find(params[:id])
     @product.company = current_user.company
     if @product.update(product_params)
-      redirect_to [:user, @company, @product]
+      redirect_to user_company_product_path(@company.token, @product)
     else
       render :edit
     end

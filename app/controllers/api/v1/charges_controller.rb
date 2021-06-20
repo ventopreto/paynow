@@ -1,5 +1,4 @@
 class Api::V1::ChargesController < ActionController::API
-
   def create
     @company = Company.find_by(token: charge_params[:company_token])
     @product = Product.find_by(token: charge_params[:product_token])
@@ -25,7 +24,6 @@ class Api::V1::ChargesController < ActionController::API
       @cvv = charge_params[:cvv]
       @cardholder_name = charge_params[:cardholder_name]
       @credit_card_number = charge_params[:credit_card_number]
-      
 
       @charge = Charge.create!(company: @company, end_user:@end_user, product: @product,
                                                 credit_card:@credit_card, original_value: @product.price, 
@@ -42,7 +40,6 @@ class Api::V1::ChargesController < ActionController::API
   end
 
 private
-
   def charge_params
     params.require(:charge).permit(:end_user_token, :product_token, :company_token, :payment, :value_with_discount,
                                     :payment_category, :address, :cardholder_name, :credit_card_number, :cvv)

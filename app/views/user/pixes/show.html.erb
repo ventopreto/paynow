@@ -9,4 +9,4 @@
     <p class="card-text">Código do Banco: <%= @pix.bank_code%></p>
 
   <%= link_to 'Editar', edit_user_payment_method_pix_path(@pix), class:"btn btn-outline-dark" %>
-  <%= link_to 'Voltar', user_company_chosen_payments_path(@pix.company_id), class:"btn btn-outline-dark" %>
+  <%= link_to 'Voltar', user_company_chosen_payments_path(@company.token), class:"btn btn-outline-dark" %>

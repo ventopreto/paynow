@@ -20,7 +20,8 @@ class User::BoletosController < User::UserController
   end
 
   def show
-  @boleto = Boleto.find(params[:id])
+    @company = current_user.company
+    @boleto = Boleto.find(params[:id])
   end
 
 
@@ -40,6 +41,7 @@ class User::BoletosController < User::UserController
   end
 
 private
+
 
   def boleto_params
     params.require(:boleto).permit(:bank_code, :agency_number, :bank_account, :company_id, :payment_method_id)

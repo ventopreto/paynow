@@ -27,7 +27,7 @@ describe 'Back button' do
       click_on 'Dados da Empresa'
       click_on 'Curso de Rails'
       click_on 'Voltar'
-      expect(current_path).to eq(user_company_path(company))
+      expect(current_path).to eq(user_company_path(company.token))
       end
 
       it 'of product form should redirect to root path' do
@@ -83,7 +83,7 @@ describe 'Back button' do
       click_on "Cartão #{payment_method_credit_card.name}"
       click_on 'Voltar'
   
-      expect(current_path).to eq(user_company_chosen_payments_path(company))
+      expect(current_path).to eq(user_company_chosen_payments_path(company.token))
   
       end
 
@@ -118,7 +118,7 @@ describe 'Back button' do
           click_on 'Meios de Pagamento Escolhidos'
           click_on 'Boleto Nubank'
           click_on 'Voltar'
-          expect(current_path).to eq(user_company_chosen_payments_path(company))
+          expect(current_path).to eq(user_company_chosen_payments_path(company.token))
           end
 
         it 'of payment_method_ details should redirect to chosen payments page' do
@@ -128,7 +128,7 @@ describe 'Back button' do
           click_on 'Meios de Pagamento Escolhidos'
           click_on 'Pix Nubank'
           click_on 'Voltar'
-          expect(current_path).to eq(user_company_chosen_payments_path(company))
+          expect(current_path).to eq(user_company_chosen_payments_path(company.token))
           end
 
           it 'of payment_method_ form should redirect to root path' do

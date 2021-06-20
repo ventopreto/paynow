@@ -107,6 +107,30 @@ describe 'Charge API' do
           expect(Charge.last.product).to eq(product)
         end
 
+
+        it 'should not create a charge without cvv' do
+          end_user = end_user1
+            product = product1
+            companypayment = companypayment1
+            company = company1
+            post '/api/v1/charges', 
+            
+            params:{
+              charge:{
+                 end_user_token: end_user.token,
+                 product_token:product.token,
+                 company_token:company.token,
+                 payment:credit_card.id,
+                 cardholder_name: 'Fulano Sicrano',
+                 credit_card_number: 1234567890123456,
+                 payment_category:credit_card.payment_method.category
+               }
+           }
+           
+            expect(response).to have_http_status(422)
+            expect(response.body).to include('não pode ficar em branco')
+          end
+
       it 'should not create a charge with invalid parameters' do
         product = product1
         companypayment = companypayment1
