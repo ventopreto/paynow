@@ -13,6 +13,9 @@
         <p>Valor: <%= charge.value_with_discount %></p>
         <p>Tipo de Pagamento: <%= charge.payment_category %></p>
 				<p>Código de retorno: <%= charge.last_status %></p>
+				<% if charge.status == 'aprovada' %>
+									
+				<% end %>
 				</p>
 				</div>
         <% end %>

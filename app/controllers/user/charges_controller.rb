@@ -28,6 +28,12 @@ class User::ChargesController < User::UserController
       when 'rejeitada_3'
         @charge.last_status = '11 Cobrança recusada sem motivo especificado'
         @charge.pendente! 
+      when 'aprovada'
+        @payment_receipt = PaymentReceipt.create!(effective_payment_date: @charge.effective_payment_date,
+         billing_due_date:@charge.created_at, authorization_code: params[:charge][:authorization_code], charge: @charge)
+
+        @charge.last_status = '05 Cobrança efetivada com sucesso'
+        @charge.aprovada! 
       end
       redirect_to user_company_charges_path(@company.token)
     else

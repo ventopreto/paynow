@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_20_064116) do
+ActiveRecord::Schema.define(version: 2021_06_20_095858) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -152,6 +152,16 @@ ActiveRecord::Schema.define(version: 2021_06_20_064116) do
     t.integer "status", default: 0, null: false
   end
 
+  create_table "payment_receipts", force: :cascade do |t|
+    t.string "effective_payment_date"
+    t.string "billing_due_date"
+    t.string "authorization_code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "charge_id", null: false
+    t.index ["charge_id"], name: "index_payment_receipts_on_charge_id"
+  end
+
   create_table "pixes", force: :cascade do |t|
     t.string "pix_key"
     t.integer "bank_code"
@@ -206,6 +216,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_064116) do
   add_foreign_key "company_payments", "payment_methods"
   add_foreign_key "credit_cards", "companies"
   add_foreign_key "credit_cards", "payment_methods"
+  add_foreign_key "payment_receipts", "charges"
   add_foreign_key "pixes", "companies"
   add_foreign_key "pixes", "payment_methods"
   add_foreign_key "users", "companies"

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User' do
+describe 'Charge' do
   let(:product1)  {Product.create(name: 'Gamepass PC', price: 30, company: company1)}
   let(:product2) {Product.create(name: 'Gamepass Ultimate', price: 45, company: company1)}
   let(:company1) {Company.create(cnpj: 12345678910110, corporate_name: 'Xbox', 
@@ -14,7 +14,7 @@ describe 'User' do
   let(:companypayment1) {CompanyPayment.create!(company: company1, payment_method: payment_method_boleto)}
   let(:end_user1) {EndUser.create!(cpf:12345678910, fullname:'Fulano Sicrano')}
   let(:user1) { User.create(email:'x@x.com.br',password: '123456', role:1, company_id: company1.id)}
-  it 'Admin should change charge status successfuly' do
+  it 'create payment receipt successfully' do
     charge = Charge.create!(payment_category: 'Boleto', address: 'Rua x 420', boleto: boleto, end_user:end_user1, company: company1, 
     payment_method: boleto.payment_method, product: product1, original_value: product1.price,
      value_with_discount: product1.price)
@@ -29,7 +29,7 @@ describe 'User' do
 
     select '05 Cobrança efetivada com sucesso', from: 'Status'
     fill_in 'Data efetiva do pagamento', with: Date.today
-    fill_in 'Codigo de Autorização', with: 'alsjdladshajgsjgdf'
+    fill_in 'Codigo de Autorização', with: 'khasdkhakhdhk'
     click_on 'Atualizar'
 
     expect(Charge.first.effective_payment_date).to eq(Date.today)
