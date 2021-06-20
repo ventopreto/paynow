@@ -8,10 +8,10 @@
       attributes:
         charge:
           statuses: 
-            Pendente: 01 Pendente de cobrança
-            Aprovada: 05 Cobrança efetivada com sucesso
-            Rejeitada_1: 09 Cobrança recusada por falta de créditos
-            Rejeitada_2: 10 Cobrança recusada por dados incorretos para cobrança
-            Rejeitada_3: 11 Cobrança recusada sem motivo especificado
+            pendente: 01 Pendente de cobrança
+            aprovada: 05 Cobrança efetivada com sucesso
+            rejeitada_1: 09 Cobrança recusada por falta de créditos
+            rejeitada_2: 10 Cobrança recusada por dados incorretos para cobrança
+            rejeitada_3: 11 Cobrança recusada sem motivo especificado
 
               

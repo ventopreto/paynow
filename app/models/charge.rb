@@ -14,7 +14,7 @@ class Charge < ApplicationRecord
   validates :credit_card_number, length: { is: 16 }, if: :paid_with_card?
   validates :cvv, length: { in: 3..4 }, if: :paid_with_card?
   enum payment_category: { Pix:0, Boleto:1, Cartão:2}
-  enum status: { Pendente:0, Aprovada:1, Rejeitada_1:2, Rejeitada_2:3, Rejeitada_3:4}
+  enum status: { pendente:0, aprovada:1, rejeitada_1:2, rejeitada_2:3, rejeitada_3:4}
 
 
   def generate_token

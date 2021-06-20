@@ -15,7 +15,21 @@ class User::ChargesController < User::UserController
     @company = current_user.company
     @charge = Charge.find_by(token: params[:token])
     if @charge.update(charge_params)
-      redirect_to user_company_charge_path(@company.token, @charge.token)
+      case @charge.status
+      when 'pendente'
+        @charge.last_status = ' 01 Pendente de cobrança'
+        @charge.pendente! 
+      when 'rejeitada_1'
+        @charge.last_status = '09 Cobrança recusada por falta de créditos'
+        @charge.pendente! 
+      when 'rejeitada_2'
+        @charge.last_status = '10 Cobrança recusada por dados incorretos para cobrança'
+        @charge.pendente! 
+      when 'rejeitada_3'
+        @charge.last_status = '11 Cobrança recusada sem motivo especificado'
+        @charge.pendente! 
+      end
+      redirect_to user_company_charges_path(@company.token)
     else
       render :new
     end
@@ -24,6 +38,6 @@ class User::ChargesController < User::UserController
 private
 
   def charge_params
-    params.require(:charge).permit(:status)
+    params.require(:charge).permit(:status ,:effective_payment_date, :payment_attempt_date)
   end
 end
