@@ -29,7 +29,7 @@ describe 'User' do
 
     select '05 Cobrança efetivada com sucesso', from: 'Status'
     fill_in 'Data efetiva do pagamento', with: Date.today
-    fill_in 'Codigo de Autorização', with: 'alsjdladshajgsjgdf'
+    fill_in 'Código de Autorização', with: 'alsjdladshajgsjgdf'
     click_on 'Atualizar'
 
     expect(Charge.first.effective_payment_date).to eq(Date.today)

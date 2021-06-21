@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_20_095858) do
+ActiveRecord::Schema.define(version: 2021_06_20_093302) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_095858) do
   create_table "charges", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.integer "company_id", null: false
+    t.integer "product_id", null: false
     t.string "token"
     t.integer "status", default: 0, null: false
     t.decimal "original_value"
@@ -78,14 +79,13 @@ ActiveRecord::Schema.define(version: 2021_06_20_095858) do
     t.integer "credit_card_number"
     t.string "cardholder_name"
     t.integer "cvv"
-    t.string "address"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "product_id", null: false
     t.integer "payment_category", null: false
+    t.string "address"
     t.date "effective_payment_date"
     t.date "payment_attempt_date"
     t.string "last_status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["boleto_id"], name: "index_charges_on_boleto_id"
     t.index ["company_id"], name: "index_charges_on_company_id"
     t.index ["credit_card_id"], name: "index_charges_on_credit_card_id"
@@ -136,10 +136,10 @@ ActiveRecord::Schema.define(version: 2021_06_20_095858) do
 
   create_table "end_users", force: :cascade do |t|
     t.integer "cpf"
+    t.string "token"
     t.string "fullname"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "token"
   end
 
   create_table "payment_methods", force: :cascade do |t|
@@ -156,9 +156,9 @@ ActiveRecord::Schema.define(version: 2021_06_20_095858) do
     t.string "effective_payment_date"
     t.string "billing_due_date"
     t.string "authorization_code"
+    t.integer "charge_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "charge_id", null: false
     t.index ["charge_id"], name: "index_payment_receipts_on_charge_id"
   end
 
