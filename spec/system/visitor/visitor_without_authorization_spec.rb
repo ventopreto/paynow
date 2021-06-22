@@ -1,6 +1,7 @@
 describe 'Unauthorized Visitor ' do
   let(:company) {Company.create!(email:'admin@codeplay.com.br', billing_address: 'Rua x, 420',
   corporate_name: 'Codeplay', cnpj:12345678910110)}
+  let(:product)  {Product.create(name: 'Gamepass PC', price: 30, company: company)}
   let(:payment_method_boleto) {PaymentMethod.create!(name: 'Banco Roxinho', max_fee: 10, percentage_fee:10, category: 'Boleto')}
   let(:payment_method_credit_card) {PaymentMethod.create!(name: 'Banco Roxinho', max_fee: 10, percentage_fee:10, category: 'Cartão')}
   let(:payment_method_pix) {PaymentMethod.create!(name: 'Banco Roxinho', max_fee: 10, percentage_fee:10, category: 'Pix')}
@@ -78,6 +79,35 @@ describe 'Unauthorized Visitor ' do
 
       visit user_company_chosen_payments_path(company)
       expect(current_path).to eq(new_user_session_path)
+    end
+
+    
+    it 'new product page' do
+
+      visit  new_user_company_product_path(company)
+      expect(current_path).to eq(new_user_session_path)
+    end
+
+      it 'post request to product' do
+
+        post user_company_products_path(company), params: {product: {name: 'Curso Rails'}}
+        expect(response).to redirect_to(new_user_session_path)
+    end
+
+      it 'edit product' do
+
+        visit edit_user_company_product_path(company, product)
+
+        expect(current_path).to eq(new_user_session_path)
+
+    end
+
+    it 'patch request to product' do
+
+      patch user_company_product_path(company, product)
+  
+      expect(response).to redirect_to(new_user_session_path)
+
     end
 
     it 'new boleto page' do
@@ -158,7 +188,6 @@ describe 'Unauthorized Visitor ' do
 
         expect(current_path).to eq(new_user_session_path)
 
-        
     end
 
     it 'patch request to pix' do

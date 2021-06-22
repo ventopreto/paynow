@@ -27,7 +27,7 @@ describe Product do
       expect(product.name).to eq('Curso de Rails')
       expect(product.price).to eq(720)
       expect(product).to be_valid
-      expect(product.token.size).to eq(28)
+      expect(product.token.size).to eq(20)
     end
   end
 end

@@ -10,7 +10,7 @@
           token: Código Alfanumérico
 
     user:
-        credit_card:
+        credit_cards:
           new:
             title: Formulário de Criação
           edit:

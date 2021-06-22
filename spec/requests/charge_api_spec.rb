@@ -161,6 +161,26 @@ describe 'Charge API' do
     expect(response).to have_http_status(422)
     expect(response.body).to include('não pode ficar em branco')
     end
+
+    it 'should not create a charge without company token' do
+      product = product1
+      companypayment = companypayment1
+      company = company1
+
+      post '/api/v1/charges', 
+      params:{
+        charge:{
+           product_token:product.token,
+           payment:boleto.id,
+           address: "Rua tal 42",
+           payment_category:boleto.payment_method.category
+  
+         }
+     }
+
+    expect(response).to have_http_status(422)
+    expect(response.body).to include('não pode ficar em branco')
+    end
   end
 
   def parsed_body

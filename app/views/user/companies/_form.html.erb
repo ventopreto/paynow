@@ -9,31 +9,28 @@
 <%= form_with model: [:user , company] do |f| %>
 
 
-
-
-
     <%= f.label :cnpj, "CNPJ", class:"form_label" %>
 	    <%= error_tag company, :cnpj %>
-    <%= f.text_field :cnpj , class:"form_controll" %>
+    <%= f.text_field :cnpj, placeholder: '12345678910123' , class:"form_controll d-block" %>
 
     
 
     <%= f.label :corporate_name, "Razão Social", class:"form_label" %>
 	    <%= error_tag company, :corporate_name %>
-    <%= f.text_field :corporate_name , class:"form_controll" %>
+    <%= f.text_field :corporate_name, placeholder: 'Exemplo Comercio LTDA'  , class:"form_controll d-block" %>
 
 
 
 
     <%= f.label :billing_address, "Endereço de faturamento", class:"form_label" %>
 	    <%= error_tag company, :billing_address %>
-    <%= f.text_field :billing_address , class:"form_controll" %>
+    <%= f.text_field :billing_address, placeholder: 'Rua x, 420'  , class:"form_controll d-block" %>
 
 
 
-    <%= f.label :email, "E-mail para faturamento", class:"form_label" %>
+    <%= f.label :email, "E-mail para faturamento", class:"form_label pt-1 pb-1" %>
 	    <%= error_tag company, :email %>
-    <%= f.text_field :email , class:"form_controll" %>
+    <%= f.text_field :email, placeholder: 'empresa@empresa.com'  , class:"form_controll d-block mb-1" %>
 
 
 

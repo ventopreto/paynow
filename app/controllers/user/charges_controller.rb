@@ -7,8 +7,8 @@ class User::ChargesController < User::UserController
 
   def edit
     @company = current_user.company
-    @charge = Charge.find_by(token: params[:token])
     @charges = Charge.all
+    @charge = Charge.find_by(token: params[:token])
   end
 
   def update
@@ -17,7 +17,7 @@ class User::ChargesController < User::UserController
     if @charge.update(charge_params)
       case @charge.status
       when 'pendente'
-        @charge.last_status = ' 01 Pendente de cobrança'
+        @charge.last_status = '01 Pendente de cobrança'
         @charge.pendente! 
       when 'rejeitada_1'
         @charge.last_status = '09 Cobrança recusada por falta de créditos'
@@ -37,7 +37,7 @@ class User::ChargesController < User::UserController
       end
       redirect_to user_company_charges_path(@company.token)
     else
-      render :new
+      render :edit
     end
   end
 

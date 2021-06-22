@@ -106,6 +106,29 @@ describe 'User' do
             expect(Charge.first.last_status).to eq("11 Cobrança recusada sem motivo especificado")
             expect(Charge.count).to eq(1)
             end
+            
+              it 'Admin should change charge status to reject option 4' do
+                charge = Charge.create!(payment_category: 'Boleto', address: 'Rua x 420', boleto: boleto, end_user:end_user1, company: company1, 
+                payment_method: boleto.payment_method, product: product1, original_value: product1.price,
+                 value_with_discount: product1.price)
+            
+                company = company1
+                user = user1
+                login_as user, scope: :user
+                visit root_path
+                click_on 'Dados da Empresa'
+                click_on 'Ver Cobranças'
+                click_on "Atualizar #{charge.token}"
+            
+                select '01 Pendente de cobrança', from: 'Status'
+                fill_in 'Data da tentativa', with: Date.today
+                click_on 'Atualizar'
+            
+                expect(Charge.first.payment_attempt_date).to eq(Date.today)
+                expect(Charge.first.status).to eq("pendente")
+                expect(Charge.first.last_status).to eq("01 Pendente de cobrança")
+                expect(Charge.count).to eq(1)
+                end
 end
 
 

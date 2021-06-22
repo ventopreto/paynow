@@ -6,7 +6,6 @@ describe User do
     user =User.create(email: 'codeplay@hotmail.com', password: 12345678910110) 
 
     user.valid?
-
     expect(user.errors[:email]).to include('não é válido')
     end
 
@@ -53,6 +52,21 @@ describe User do
 
       expect(user.email).to eq('codeplay@codeplay.com.br')
       expect(user.password).to eq(12345678910110)
+
+      expect(user).to be_valid
+    end
+
+    it 'set_employer' do
+      user = User.create(email: 'codeplay@codeplay.com.br', password: 12345678910110)
+      codeplay =Company.create(email: 'codeplay@codeplay.com.br', cnpj: 12345678910110, 
+      billing_address:'Rua Tal, 50, Centro',
+      corporate_name: 'codeplay ltda')
+
+      user.valid?
+
+      expect(user.email).to eq('codeplay@codeplay.com.br')
+      expect(user.password).to eq(12345678910110)
+      expect(user.set_employer).to eq(true)
 
       expect(user).to be_valid
     end

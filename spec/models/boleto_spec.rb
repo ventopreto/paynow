@@ -20,7 +20,7 @@ describe Boleto do
       codeplay =Company.create(email: 'codeplay@codeplay.com.br', cnpj: 12345678910110, 
       billing_address:'Rua Tal, 50, Centro',
       corporate_name: 'codeplay ltda')
-      payment = PaymentMethod.create(name: 'pix', max_fee: 30, percentage_fee: 10, category: "Boleto")
+      payment = PaymentMethod.create(name: 'Banco Roxinho', max_fee: 30, percentage_fee: 10, category: "Boleto")
       boleto = Boleto.create(bank_code: 123, agency_number: 1234, bank_account: 123456789, company_id: codeplay.id, payment_method_id: payment.id)
 
   
@@ -31,6 +31,7 @@ describe Boleto do
       expect(boleto.agency_number).to eq(1234)
       expect(boleto.bank_account).to eq(123456789)
       expect(boleto).to be_valid
+      expect(boleto.category_with_name).to eq('Boleto Banco Roxinho')
     end
   end
 end

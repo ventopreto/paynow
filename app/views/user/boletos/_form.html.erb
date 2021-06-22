@@ -14,26 +14,24 @@
 
     <%= f.label :bank_code, "Código do Banco", class:"form_label" %>
         <%= error_tag @boleto, :bank_code %>
-    <%= f.text_field :bank_code , class:"form_controll" %>
-
-
+    <%= f.number_field :bank_code, placeholder:123 , class:"form_controll" %>
 
 
     <%= f.label :agency_number, "Número da Agência", class:"form_label" %>
         <%= error_tag @boleto, :agency_number %>
-    <%= f.text_field :agency_number , class:"form_controll" %>
+    <%= f.number_field :agency_number, placeholder:123456 , class:"form_controll" %>
 
 
 
     <%= f.label :bank_account, "Conta Bancária", class:"form_label" %>
         <%= error_tag @boleto, :bank_account %>
-    <%= f.text_field :bank_account , class:"form_controll" %>
+    <%= f.number_field :bank_account, placeholder: 423246 , class:"form_controll" %>
 
 
 
   <div class="input-group-btn">
-    <%= f.submit button_text,  class:"btn btn-outline-success btn-sm" %>
-    <%= link_to t('links.back'), root_path, class:"btn btn-outline-dark btn-sm" %>
+    <%= f.submit button_text,  class:"btn btn-outline-success btn-sm mt-2" %>
+    <%= link_to t('links.back'), root_path, class:"btn btn-outline-dark btn-sm mt-2" %>
 </div>
 <% end %>
 </div>

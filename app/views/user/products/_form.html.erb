@@ -4,19 +4,19 @@
     <%= form_with url: url, model: [:user, company, product]  do |f| %>
         <%= f.label :name, "Nome do Produto", class:"form_label" %>
             <%= error_tag @product, :name %>
-        <%= f.text_field :name , class:"form_controll" %>
+        <%= f.text_field :name, placeholder: 'produto exemplo' , class:"form_controll" %>
 
         <%= f.label :price, "Preço", class:"form_label" %>
             <%= error_tag @product, :price %>
-        <%= f.text_field :price , class:"form_controll" %>
+        <%= f.number_field :price, placeholder: '10'  , class:"form_controll" %>
 
         <%= f.label :discount, "Desconto", class:"form_label" %>
             <%= error_tag @product, :discount %>
-        <%= f.text_field :discount , class:"form_controll" %>
+        <%= f.number_field :discount, placeholder: '10'  , class:"form_controll" %>
 
         <div class="input-group-btn">
-          <%= f.submit button_text,  class:"btn btn-outline-success btn-sm" %>
-          <%= link_to t('links.back'), root_path, class:"btn btn-outline-dark btn-sm" %>
+          <%= f.submit button_text,  class:"btn btn-outline-success btn-sm mt-2" %>
+          <%= link_to t('links.back'), root_path, class:"btn btn-outline-dark btn-sm mt-2" %>
       </div>
   <% end %>
 </div>

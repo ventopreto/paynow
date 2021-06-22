@@ -1,0 +1,19 @@
+---
+  pt-BR:
+    activerecord:
+      models:
+        product:
+          one: Produto
+          other: Produtos
+      attributes:
+        product:
+          price: Preço
+          name: Nome
+          discount: Desconto
+    user:
+        products:
+          new:
+            title: Formulário de Criação de Produto
+          edit:
+            title: Formulário de Atualização de Produto
+              

@@ -5,9 +5,9 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
 
-    <%= f.label :email, class:"form_label"  %>
+    <%= f.label :email,class:"form_label"  %>
         <%= error_tag @user, :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class:"form_controll" %>
+    <%= f.email_field :email, placeholder: 'exemplo@empresa.com' ,autofocus: true, autocomplete: "email" ,class:"form_controll" %>
 
 
     <%= f.label :password, class:"form_label"  %>
@@ -15,12 +15,12 @@
     <% if @minimum_password_length %>
     <em>(No minimo <%= @minimum_password_length %> caracteres)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" , class:"form_controll" %>
+    <%= f.password_field :password, placeholder: 'Senha',autocomplete: "new-password" , class:"form_controll" %>
 
 
     <%= f.label :password_confirmation, class:"form_label"  %><br />
                 <%= error_tag @user, :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" , class:"form_controll"  %>
+    <%= f.password_field :password_confirmation, placeholder: 'Confirmação de senha', autocomplete: "new-password" , class:"form_controll"  %>
 
 
   <div class="actions">

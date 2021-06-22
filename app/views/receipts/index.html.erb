@@ -1,0 +1,20 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Data de vencimento da cobrança</th>
+      <th scope="col">Data efetiva do pagamento</th>
+      <th scope="col">Código de autorização</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @receipts.each_with_index do |receipt, i| %>
+    <tr>
+      <th scope="row"><%=i+1%></th>
+      <td><%= receipt.billing_due_date%></td>
+      <td><%= receipt.effective_payment_date%></td>
+      <td><%= receipt.authorization_code%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

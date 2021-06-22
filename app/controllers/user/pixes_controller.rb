@@ -34,9 +34,9 @@ class User::PixesController < User::UserController
     @payment_method = PaymentMethod.find(params[:payment_method_id])
     @pix = Pix.find(params[:id])
     if @pix.update(pix_params)
-      redirect_to user_payment_method_pix_path(@payment_method, @boleto)
+      redirect_to user_payment_method_pix_path(@payment_method, @pix)
     else
-      render :new
+      render :edit
     end
   end
 

@@ -33,9 +33,9 @@ class User::CreditCardsController < User::UserController
     @payment_method = PaymentMethod.find(params[:payment_method_id])
     @creditcard = CreditCard.find(params[:id])
     if @creditcard.update(credit_card_params)
-      redirect_to user_payment_method_creditcard_path(@creditcard)
+      redirect_to user_payment_method_credit_card_path(@payment_method, @creditcard)
     else
-      render :new
+      render :edit
     end
   end
 

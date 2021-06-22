@@ -14,13 +14,13 @@
 
     <%= f.label :token, "Código Alfanumérico", class:"form_label" %>
         <%= error_tag @creditcard, :token %>
-    <%= f.text_field :token , class:"form_controll" %>
+    <%= f.text_field :token, placeholder: 'PPBGLaVLaueRh57i4TUcx24x' , class:"form_controll" %>
 
 
 
   <div class="input-group-btn">
-    <%= f.submit button_text,  class:"btn btn-outline-success btn-sm" %>
-    <%= link_to t('links.back'), root_path, class:"btn btn-outline-dark btn-sm" %>
+    <%= f.submit button_text,  class:"btn btn-outline-success btn-sm mt-2" %>
+    <%= link_to t('links.back'), root_path, class:"btn btn-outline-dark btn-sm mt-2" %>
 </div>
 <% end %>
 </div>

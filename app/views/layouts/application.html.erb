@@ -19,13 +19,12 @@
       <div class="collapse navbar-collapse">
        <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-         <% if  user_signed_in?%>
-        <li class="nav-item active">
-          <%= link_to 'Cadastrar Empresa', new_user_company_path, class:"nav-link" %>
+          <%= link_to 'Recibos', receipts_path, class:"nav-link" %>
         </li>
+        <li class="nav-item active">
+         <% if  user_signed_in?%>
         <% if  current_user && current_user.company %>
         <li class="nav-item active">
-
           <%= link_to 'Dados da Empresa', user_company_path(current_user.company.token), class:"nav-link" %>
         </li>
         <li class="nav-item active">
@@ -36,6 +35,10 @@
           <%= link_to 'Meios de Pagamento Escolhidos', user_company_chosen_payments_path(current_user.company_id), class:"nav-link" %>
         </li>
 
+        <% else %>
+        <li class="nav-item active">
+          <%= link_to 'Cadastrar Empresa', new_user_company_path, class:"nav-link" %>
+        </li>
         <% end %>
         <li class="nav-item">
            <span class="text-light nav-link disabled"><%= current_user.email %></span>
@@ -61,5 +64,30 @@
       <div class="container-fluid">
         <%= yield %>
       </div>
+        </div>
+            </div>
+<footer class="bg-dark text-center text-white">
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a class="btn btn-outline-light btn-floating m-1 " href="#!" role="button">Facebook</a>
+      <!-- Instagram -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">Instagram</a>
+      <!-- Twitter -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button" >Twitter</a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2021 Copyright:
+    <a class="text-white" >Paynow</a>
+  </div>
+  <!-- Copyright -->
+</footer>
   </body>
 </html>

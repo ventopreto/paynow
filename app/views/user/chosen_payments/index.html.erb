@@ -7,11 +7,12 @@
 						<p>Nenhum Boleto</p>
 					<% else %>
 				<% @boletos.each do |boleto| %>
-				<p class="card-text text-center">
+				<p class="card-text text-center">	
 				<%= image_tag boleto.payment_method.icon, size: '25' %>
 				<%= link_to boleto.category_with_name, user_payment_method_boleto_path(boleto.payment_method, boleto)%>
-				<%= boleto.bank_account %>
 				</p>
+				<p class="card-text text-center">Conta bancária: <%= boleto.bank_account %></p>
+
 				<% end %>
 			</div>
 				<% end %>	
@@ -21,15 +22,15 @@
 			<div class="card-body border border-dark">
 				<h4 class="card-text text-center">Pix</h4>
 					<% @pixes.each do |pix| %>
-						<p class="card-text text-center">
-						<%= image_tag pix.payment_method.icon, size: '25' %>
-						<%= link_to pix.category_with_name , user_payment_method_pix_path(pix.payment_method, pix)%>
-						<%= pix.pix_key %>
-						</p>
+					<p class="card-text text-center">	<%= image_tag pix.payment_method.icon, size: '25' %>
+					<%= link_to pix.category_with_name , user_payment_method_pix_path(pix.payment_method, pix)%>
+					</p>
+					<p class="card-text text-center">Chave Pix:<%= pix.pix_key%></p>
+						
 					<% end %>
 				</div>
 			<% end %>
-					<% if @pixes.empty? %>
+					<% if @creditcards.empty? %>
 						<p>Nenhum Cartão de Credito</p>
 					<% else %>
 			<div class="card-body border border-dark">
@@ -39,14 +40,14 @@
 						<%= image_tag creditcard.payment_method.icon, size: '25' %>
 						<%= link_to creditcard.category_with_name,
 						 user_payment_method_credit_card_path(creditcard.payment_method.id, creditcard)%>
-						 		<%= creditcard.token %>
-						 </p>
+						 	</p>
+						 	<p class="card-text text-center">Token do Cartão:<%= creditcard.token %></p>
+
 					<% end %>
 				</div>
 				<% end %>
 			</div>
 		</div>
-
 
 <div class="col text-center">
 	<%= link_to 'Voltar', root_path, class:"btn btn-outline-dark mx-auto" %>

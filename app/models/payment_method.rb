@@ -19,8 +19,6 @@ class PaymentMethod < ApplicationRecord
       icon.attach(io: File.open(Rails.root+'spec/fixtures/pix.png'), filename: 'pix.png')
     when 'Boleto'
       icon.attach(io: File.open(Rails.root+'spec/fixtures/boleto.png'), filename: 'boleto.png')
-    else
-      icon.attach(io: File.open(Rails.root+'spec/fixtures/Missing.png'), filename: 'Missing.png')
       end
     end
   end

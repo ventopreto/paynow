@@ -5,7 +5,7 @@ class Product < ApplicationRecord
 
 
   def generate_token
-    self.token = SecureRandom.base64(20)
+    self.token = SecureRandom.base64(15)
   end
 end
 

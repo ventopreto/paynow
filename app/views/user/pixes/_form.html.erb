@@ -11,17 +11,17 @@
 <%= form_with model: [:user, payment_method, pix] do |f| %>
     <%= f.label :bank_code, "Código do Banco", class:"form_label" %>
         <%= error_tag @pix, :bank_code %>
-    <%= f.text_field :bank_code , class:"form_controll" %>
+    <%= f.number_field :bank_code, placeholder: '123' , class:"form_controll" %>
 
 
     <%= f.label :pix_key, "Chave Pix", class:"form_label" %>
-        <%= error_tag @pix, :bank_code %>
-    <%= f.text_field :pix_key , class:"form_controll" %>
+        <%= error_tag @pix, :pix_key %>
+    <%= f.text_field :pix_key, placeholder: 'PPBGLaVLaueRh57i4TUcx24x' , class:"form_controll" %>
 
 
   <div class="input-group-btn">
-    <%= f.submit button_text,  class:"btn btn-outline-success btn-sm" %>
-    <%= link_to t('links.back'), root_path, class:"btn btn-outline-dark btn-sm" %>
+    <%= f.submit button_text,  class:"btn btn-outline-success btn-sm mt-2" %>
+    <%= link_to t('links.back'), root_path, class:"btn btn-outline-dark btn-sm mt-2" %>
 </div>
 <% end %>
 </div>

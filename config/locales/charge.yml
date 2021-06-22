@@ -7,11 +7,23 @@
           other: Cobranças
       attributes:
         charge:
-          statuses: 
+          effective_payment_date: Data efetiva do pagamento
+          payment_attempt_date:  Data da tentativa do pagamento
+          last_status: Ultimo Status
+          cardholder_name: Nome impresso no cartão
+          cvv: Código de verificação
+          payment_category: Tipo de Pagamento
+          address: Endereço completo
+          credit_card_number: Número do cartão
+          statuses:
             pendente: 01 Pendente de cobrança
             aprovada: 05 Cobrança efetivada com sucesso
             rejeitada_1: 09 Cobrança recusada por falta de créditos
             rejeitada_2: 10 Cobrança recusada por dados incorretos para cobrança
             rejeitada_3: 11 Cobrança recusada sem motivo especificado
-
+    user:
+        charges:
+          new:
+          edit:
+            title: Atualização de Status do pagamento
               

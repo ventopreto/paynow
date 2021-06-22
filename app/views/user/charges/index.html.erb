@@ -1,29 +1,30 @@
+<table class="table table-striped table-dark mt-1">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+			<th scope="col">Token</th>
+      <th scope="col">Nome do Produto</th>
+      <th scope="col">Valor</th>
+			<th scope="col">Status</th>
+      <th scope="col">Tipo de Pagamento</th>
+			<th scope="col">Código de retorno</th>
+    </tr>
+  </thead>
+  <tbody>
+		<% @charges.each_with_index do |charge, i| %>
+    <tr>
+      <th scope="row"><%=i+1%></th>
+				<td><%= link_to "Atualizar #{charge.token}", edit_user_company_charge_path(@company.token, charge.token), class:"btn btn-info" %> </td>
+				<td class="text-center"><%= charge.product.name %></td>
+				<td><%= charge.value_with_discount%></td>
+				<td><%= charge.status %></td>
+				<td class="text-center"><%= charge.payment_category %></td>
+				<td><%= charge.last_status %></td>
+    </tr>
+		<% end %>
+  </tbody>
+</table>
 
-<div class="card-group mx-auto row pt-3 pb-3" style="width: 40rem;">
-		<div class="card-body border border-dark ">
-      		<h3 class="card-title text-center">Cobranças</h3>
-					<% if @charges.empty? %>
-						<p>Nenhuma Cobrança</p>
-					<% else %>
-				<% @charges.each do |charge| %>
-				<div class="container border border-dark pt-3">
-				<p class="card-text col-4">
-        <%= link_to "Atualizar #{charge.token}", edit_user_company_charge_path(@company.token, charge.token), class:"btn btn-outline-dark" %> 
-				<p>Status: <%= charge.status %></p>
-        <p>Valor: <%= charge.value_with_discount %></p>
-        <p>Tipo de Pagamento: <%= charge.payment_category %></p>
-				<p>Código de retorno: <%= charge.last_status %></p>
-				<% if charge.status == 'aprovada' %>
-									
-				<% end %>
-				</p>
-				</div>
-        <% end %>
-				</div>
-				</div>
-
-        <% end %>
-				</div>
 
 <div class="col text-center">
 	<%= link_to 'Voltar', root_path, class:"btn btn-outline-dark mx-auto" %>

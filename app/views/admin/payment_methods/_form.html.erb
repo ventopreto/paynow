@@ -1,29 +1,27 @@
-<h1 class="text-center"><%= t('.title') %></h1>
 <div class="container">
 
 <div class="card mx-auto" style="width: 15rem;">
   <div class="card-body">
 <%= form_with model: [:admin, payment_method] do |f| %>
 
-  <%= f.label :category, "Categoria", class:"form_label" %>
-                  <%= error_tag payment_method, :category %>
-  <%= f.select :category, PaymentMethod.categories.keys%>
-
-
     <%= f.label :name, "Nome", class:"form_label" %>
                 <%= error_tag payment_method, :name %>
-    <%= f.text_field :name , class:"form_controll" %>
+    <%= f.text_field :name, placeholder: "Fulano" , class:"form_controll" %>
 
 
     <%= f.label :percentage_fee, "Taxa por cobrança em %", class:"form_label" %>
               <%= error_tag payment_method, :percentage_fee %>
-    <%= f.text_field :percentage_fee , class:"form_controll" %>
+    <%= f.text_field :percentage_fee, placeholder: "10" , class:"form_controll" %>
 
 
 
     <%= f.label :max_fee, "Taxa máxima em reais", class:"form_label" %>
                   <%= error_tag payment_method, :max_fee %>
-    <%= f.text_field :max_fee , class:"form_controll" %>
+    <%= f.text_field :max_fee, placeholder: "10" , class:"form_controll" %>
+
+      <%= f.label :category, "Categoria", class:"form_label pt-2 pb-2" %>
+                  <%= error_tag payment_method, :category %>
+  <%= f.select :category, PaymentMethod.categories.keys, class:"form_controll"%>
 
 
 
