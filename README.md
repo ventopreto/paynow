@@ -205,7 +205,7 @@ POST /api/v1/charges
 Esse endpoint aceita 3 tipos de pagamento(Boleto, Pix e Cartão de Crédito), cada um desses
 precisa de payment_category, que nada mais é do que o tipo de pagamento,
 o token da empresa, o token do produto
-, o token do usuário final, alguns 
+, o token do usuário final e o payment que é o id da forma de pagamento, alguns 
 pagamentos precisam de dados específicos
 no caso do boleto, precisamos passar o endereço.
  
@@ -213,23 +213,26 @@ no caso do boleto, precisamos passar o endereço.
 ```json
 {
    "charge":{
-      "end_user_token":"PPBGLaVLaueRh57i4TUcx24x",
-      "product_token":"Si5u0LtQivzI83JgqYDVxhqeuiE=",
-      "company_token":"gsVXGugQDyuzfY4dfEIGx5Vod4g=",
+      "end_user_token":"ClfFnjd2JaZZ5xkohwKQ",
+      "product_token":"UcLLU/ECpEnqHQsPjyd7Zu8nWew=",
+      "company_token":"xGUHEgfprzTl7w4xOiZF",
+		 	"payment":"1",
       "address":"Rua tal 42",
-    "payment_category":"Boleto"}
+			"payment_category":"Boleto"}
 }
 ```
 A cobrança via boleto é criada e retorna com um status 201
 #### Exemplo Cobrança com Pix
 ```json
 {
-    "charge":{
-      "end_user_token":"PPBGLaVLaueRh57i4TUcx24x",
-      "product_token":"Si5u0LtQivzI83JgqYDVxhqeuiE=",
-      "company_token":"gsVXGugQDyuzfY4dfEIGx5Vod4g=",
-      "payment_category": "Pix"}
+   "charge":{
+      "end_user_token":"ClfFnjd2JaZZ5xkohwKQ",
+      "product_token":"UcLLU/ECpEnqHQsPjyd7Zu8nWew=",
+      "company_token":"xGUHEgfprzTl7w4xOiZF",
+		 	"payment":"1",
+			"payment_category":"Pix"}
 }
+
 ```
 A cobrança via pix é criada e retorna com um status 201
  
@@ -238,14 +241,15 @@ No caso do pix nenhum parâmetro adicional precisa ser passado
 #### Exemplo requisição com Cartão de Crédito
 ```json
 {
-    "charge":{
-        "end_user_token":"PPBGLaVLaueRh57i4TUcx24x",
-        "product_token":"Si5u0LtQivzI83JgqYDVxhqeuiE=",
-        "company_token":"gsVXGugQDyuzfY4dfEIGx5Vod4g=",
-        "payment_category": "Cartão",
-        "cvv": "123",
-        "cardholder_name": "Fulano Sicrano",
-        "credit_card_number": "1234567890123456"}
+   "charge":{
+      "end_user_token":"ClfFnjd2JaZZ5xkohwKQ",
+      "product_token":"UcLLU/ECpEnqHQsPjyd7Zu8nWew=",
+      "company_token":"xGUHEgfprzTl7w4xOiZF",
+		 	"payment":"1",
+		 	"cardholder_name": "Fulano Sicrano",
+		 	"cvv": "123",
+		 	"credit_card_number": "1234567890123456",
+			"payment_category":"Cartão"}
 }
 ```
 No caso da cobrança via cartão são necessários 3 parâmetros:
@@ -264,6 +268,7 @@ sem passar o cvv
         "end_user_token":"PPBGLaVLaueRh57i4TUcx24x",
         "product_token":"Si5u0LtQivzI83JgqYDVxhqeuiE=",
         "company_token":"gsVXGugQDyuzfY4dfEIGx5Vod4g=",
+        "payment":"1",
         "payment_category": "Cartão",
         "cardholder_name": "Fulano Sicrano",
         "credit_card_number": "1234567890123456",
