@@ -286,4 +286,136 @@ Como um dos parâmetros está faltando a requisição vai retornar com o status 
 ```
 Nesse exemplo é a requisição retorna com o status 412, dado que os parâmetros estão inválidos
 
+## Consultando cobranças
+```http
+GET /api/v1/charges
+```
+ 
+É possivel consultar cobranças usando o tipo de pagamento(payment_category) ou  data de vencimento(billing_due_date)
+ 
+#### Exemplo de consulta de cobrança por data de vencimento
+```json
+		{
+        "charge":{
+					"billing_due_date": "26/06/2021"
+         }
+     }
+```
+
+A requisição é feita com sucesso e retorna uma lista de cobranças em json e status 200
+```json
+[
+  {
+    "end_user_id": 1,
+    "company_id": 1,
+    "product_id": 1,
+    "token": "ii3IM7dAtSY97s9p1Mlf",
+    "status": "pendente",
+    "original_value": "450.0",
+    "value_with_discount": "405.0",
+    "boleto_id": 1,
+    "pix_id": null,
+    "credit_card_id": null,
+    "payment_method_id": 2,
+    "credit_card_number": null,
+    "cardholder_name": null,
+    "cvv": null,
+    "payment_category": "Boleto",
+    "address": "Rua tal 42",
+    "effective_payment_date": null,
+    "payment_attempt_date": null,
+    "last_status": null,
+    "billing_due_date": "26/06/2021"
+  }
+]
+```
+
+#### Exemplo de consulta de cobrança por tipo de pagamento
+```json
+		{
+        "charge":{
+					"payment_category": "1"
+         }
+     }
+  ```
+
+A requisição é feita com sucesso e retorna uma lista de cobranças em json e status 200
+
+```json
+    [
+  {
+    "end_user_id": 1,
+    "company_id": 1,
+    "product_id": 1,
+    "token": "beeEycu/roFK+aXGHPNI",
+    "status": "pendente",
+    "original_value": "450.0",
+    "value_with_discount": "405.0",
+    "boleto_id": 1,
+    "pix_id": null,
+    "credit_card_id": null,
+    "payment_method_id": 2,
+    "credit_card_number": null,
+    "cardholder_name": null,
+    "cvv": null,
+    "payment_category": "Boleto",
+    "address": "Rua tal 42",
+    "effective_payment_date": "2021-06-20",
+    "payment_attempt_date": "2021-06-22",
+    "last_status": "01 Pendente de cobrança",
+    "billing_due_date": null
+  },
+  {
+    "end_user_id": 1,
+    "company_id": 1,
+    "product_id": 1,
+    "token": "Hl6uVCpfLx3fJuND4m5H",
+    "status": "aprovada",
+    "original_value": "450.0",
+    "value_with_discount": "405.0",
+    "boleto_id": 1,
+    "pix_id": null,
+    "credit_card_id": null,
+    "payment_method_id": 2,
+    "credit_card_number": null,
+    "cardholder_name": null,
+    "cvv": null,
+    "payment_category": "Boleto",
+    "address": "Rua tal 42",
+    "effective_payment_date": "2021-06-22",
+    "payment_attempt_date": "2021-06-22",
+    "last_status": "05 Cobrança efetivada com sucesso",
+    "billing_due_date": null
+  }
+     ]
+```
+
+#### Exemplo de consulta de cobrança com parametros invalidos
+```json
+		{
+        "charge":{
+					"payment_category": ""
+         }
+     }
+  ```
+
+A requisição falha e retorna um json com o erro e mensagem "Parâmetros inválidos"  e status 412
+
+```json
+{
+  "errors": "Parâmetros inválidos"
+}
+```
+
+#### Exemplo de consulta de cobrança com dados que não existem
+```json
+		{
+        "charge":{
+					"billing_due_date": "26/06/2042"
+         }
+     }
+  ```
+
+Como não existem cobranças com essa data de vencimento a requisição falha e retorna um status 404
+
 
