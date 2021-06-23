@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :end_users, only: %i[create]
-      resources :charges, only: %i[create]
+      resources :charges, only: %i[index create]
       end
     end
 
