@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :email, format:{with: /[^@]+@(?!gmail|yahoo|hotmail|paynow)[^@]+\.[^@]*/}
   enum role: { employer: 0, admin: 1}
 
+  
   def set_employer
     company = Company.where(email_domain: self.email.split('@')[1])
   if company[0] != nil

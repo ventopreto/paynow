@@ -1,8 +1,10 @@
 
   <div class="card border border-5 mt-3 mx-auto" style="width: 27rem;">
   <div class="card-body text-justify mx-auto">
+    <% if @pix.payment_method.icon.attached?%>
   <%= image_tag @pix.payment_method.icon, size: "50x50", class:"mx-auto" %>
-    <h5>Nome: <%= "#{@pix.payment_method.category} #{@pix.payment_method.name}"%></h5>
+  <% end %>
+    <h5>Nome: <%= @pix.category_with_name %></h5>
     <p class="card-text">Taxa(%): <%= @pix.payment_method.percentage_fee %> </p>
     <p class="card-text">Taxa Maxima: <%= number_to_currency(@pix.payment_method.max_fee) %> </p>
     <p class="card-text">Chave Pix: <%= @pix.pix_key%></p>

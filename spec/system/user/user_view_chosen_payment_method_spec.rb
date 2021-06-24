@@ -1,22 +1,22 @@
 require 'rails_helper'
 
 describe User do
-  let(:company) {Company.create!(email:'admin@codeplay.com.br', billing_address: 'Rua x, 420',
+  let(:codeplay) {Company.create!(email:'admin@codeplay.com.br', billing_address: 'Rua x, 420',
   corporate_name: 'Codeplay', cnpj:12345678910110)}
-  let!(:payment_method_boleto) {PaymentMethod.create!(name: 'Banco Roxinho', max_fee: 10, percentage_fee:10, category: 'Boleto')}
+  let!(:payment_method_boleto) {PaymentMethod.create!(name: 'Banco Roxinho', max_fee: 10, percentage_fee:10, category: 'boleto')}
   let!(:payment_method_credit_card) {PaymentMethod.create!(name: 'Banco Roxinho', max_fee: 10, percentage_fee:10, category: 2)}
-  let!(:payment_method_pix) {PaymentMethod.create!(name: 'Banco Roxinho', max_fee: 10, percentage_fee:10, category: 'Pix')}
+  let!(:payment_method_pix) {PaymentMethod.create!(name: 'Banco Roxinho', max_fee: 10, percentage_fee:10, category: 'pix')}
   let(:boleto) {Boleto.create!(bank_code: 102, agency_number:1234, bank_account: 123456, payment_method:payment_method_boleto, company: company)}
-  let(:pix) {Pix.create!(bank_code: 102, pix_key:12345678909876543210, payment_method:payment_method_pix, company: company)}
-  let(:credit_card) {CreditCard.create!(token:12345678909876543210, payment_method:payment_method_credit_card, company: company)}
-  let(:user) {User.create!(email:'x@x.com.br',password: '123456', company: company)}
+  let(:pix) {Pix.create!(bank_code: 102, pix_key:12345678909876543210, payment_method:payment_method_pix, company: codeplay)}
+  let(:credit_card) {CreditCard.create!(token:12345678909876543210, payment_method:payment_method_credit_card, company: codeplay)}
+  let(:user) {User.create!(email:'x@x.com.br',password: '123456', company: codeplay)}
 
   describe 'View chosen payments' do
     it 'successfully' do
-      pix = Pix.create!(bank_code: 102, pix_key:12345678909876543210, payment_method:payment_method_pix, company: company)
-      CompanyPayment.create!(payment_method:payment_method_pix, company: company)
-      CompanyPayment.create!(payment_method:payment_method_credit_card, company: company)
-      CompanyPayment.create!(payment_method:payment_method_boleto, company: company)
+      pix = Pix.create!(bank_code: 102, pix_key:12345678909876543210, payment_method:payment_method_pix, company: codeplay)
+      CompanyPayment.create!(payment_method:payment_method_pix, company: codeplay)
+      CompanyPayment.create!(payment_method:payment_method_credit_card, company: codeplay)
+      CompanyPayment.create!(payment_method:payment_method_boleto, company: codeplay)
 
       login_as user
       visit root_path
@@ -27,10 +27,10 @@ describe User do
       end
 
       it 'and view details' do
-        pix = Pix.create!(bank_code: 102, pix_key:12345678909876543210, payment_method:payment_method_pix, company: company)
-        CompanyPayment.create!(payment_method:payment_method_pix, company: company)
-        CompanyPayment.create!(payment_method:payment_method_credit_card, company: company)
-        CompanyPayment.create!(payment_method:payment_method_boleto, company: company)
+        pix = Pix.create!(bank_code: 102, pix_key:12345678909876543210, payment_method:payment_method_pix, company: codeplay)
+        CompanyPayment.create!(payment_method:payment_method_pix, company: codeplay)
+        CompanyPayment.create!(payment_method:payment_method_credit_card, company: codeplay)
+        CompanyPayment.create!(payment_method:payment_method_boleto, company: codeplay)
 
 
         login_as user

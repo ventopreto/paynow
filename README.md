@@ -55,8 +55,7 @@ $ git clone <https://github.com/ventopreto/paynow.git>
 $ cd paynow
  
 # Instale as dependências
-$ bundle install
-$ yarn install
+$ bin/setup
  
 # Criação do Banco de dados
 $ rails db:migrate
@@ -78,7 +77,7 @@ rails c
 ```
 Em seguida crie o administrador utilizando
 ```ruby 
-Admin.create(email: teste@paynow.com.br, password:'123456')
+Admin.create(email: 'teste@paynow.com.br', password:'123456')
 ```
 O 'teste' pode ser substituído por qualquer outra palavra, 
 mas o que vem depois de @ obrigatoriamente precisa ser paynow.com.br, 
@@ -105,7 +104,7 @@ Uma vez logado, o usuário pode cadastrar sua empresa.
 - [x]  Endpoint para emissão de cobrança
 - [x]  Confirmação Manual de Pagamentos
 - [x]  Emissão de Recibos
-- [ ]  API para consulta de cobranças
+- [x]  API para consulta de cobranças
 - [ ]  Cliente consulta cobranças
  
 
@@ -178,7 +177,7 @@ que fullname não pode ficar em branco.
 ```json
 {
 "cpf": "12345678910",
-"fullname": "Test2e"
+"fullname": "Fulano Sicrano"
 }
 ```
  
@@ -272,7 +271,7 @@ sem passar o cvv
         "payment_category": "Cartão",
         "cardholder_name": "Fulano Sicrano",
         "credit_card_number": "1234567890123456",
-            }
+                }
 }
 ```
 Como um dos parâmetros está faltando a requisição vai retornar com o status 422
@@ -297,7 +296,7 @@ GET /api/v1/charges
 ```json
 		{
         "charge":{
-					"billing_due_date": "26/06/2021"
+				  "billing_due_date": "26/06/2021"
          }
      }
 ```
@@ -399,7 +398,7 @@ A requisição é feita com sucesso e retorna uma lista de cobranças em json e 
      }
   ```
 
-A requisição falha e retorna um json com o erro e mensagem "Parâmetros inválidos"  e status 412
+A requisição falha e retorna um json com o erro e mensagem "Parâmetros inválidos" e status 412
 
 ```json
 {
@@ -416,6 +415,6 @@ A requisição falha e retorna um json com o erro e mensagem "Parâmetros invál
      }
   ```
 
-Como não existem cobranças com essa data de vencimento a requisição falha e retorna um status 404
+Como não existem cobranças com essa data de vencimento a requisição falha e retorna o status 404
 
 

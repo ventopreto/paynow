@@ -1,8 +1,10 @@
 
   <div class="card border border-5 mt-3 mx-auto" style="width: 27rem;">
   <div class="card-body text-justify mx-auto">
-  <%= image_tag @boleto.payment_method.icon, size: "50x50", class:"mx-auto" %>
-    <h5>Nome: <%= "#{@boleto.payment_method.category} #{@boleto.payment_method.name}"%></h5>
+  <% if @boleto.payment_method.icon.attached?%>
+    <%= image_tag @boleto.payment_method.icon, size: "50x50", class:"mx-auto" %>
+  <% end %>
+    <h5>Nome: <%= @boleto.category_with_name %></h5>
     <p class="card-text">Taxa(%): <%= @boleto.payment_method.percentage_fee %> </p>
     <p class="card-text">Taxa Maxima: <%= number_to_currency(@boleto.payment_method.max_fee) %> </p>
     <p class="card-text">Código do Banco: <%= @boleto.bank_code%></p>

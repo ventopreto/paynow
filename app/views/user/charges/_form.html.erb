@@ -11,7 +11,7 @@
 <%= form_with url: user_company_charge_path(company.token, charge.token), model: [:user, company, charge] do |f| %>
     <%= f.label :status, "Status", class:"form_label" %>
         <%= error_tag charge, :status %>
-<%= f.select(:status, charges.statuses.keys.map {|type| [charges.human_enum_name(:statuses, type),type]}, class:"form-control") %>
+<%= f.select(:status, Charge.statuses.keys.map {|type| [Charge.human_enum_name(:statuses, type),type]}, class:"form-control") %>
 
     <%= f.label :effective_payment_date, "Data efetiva do pagamento", class:"form_label" %>
         <%= error_tag charge, :effective_payment_date %>

@@ -16,11 +16,11 @@
           address: Endereço completo
           credit_card_number: Número do cartão
           statuses:
-            pendente: 01 Pendente de cobrança
-            aprovada: 05 Cobrança efetivada com sucesso
-            rejeitada_1: 09 Cobrança recusada por falta de créditos
-            rejeitada_2: 10 Cobrança recusada por dados incorretos para cobrança
-            rejeitada_3: 11 Cobrança recusada sem motivo especificado
+            pending: 01 Pendente de cobrança
+            approved: 05 Cobrança efetivada com sucesso
+            insufficient_funds: 09 Cobrança recusada por falta de créditos
+            incorrect_data: 10 Cobrança recusada por dados incorretos para cobrança
+            refused: 11 Cobrança recusada sem motivo especificado
     user:
         charges:
           new:

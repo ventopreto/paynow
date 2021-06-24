@@ -21,13 +21,14 @@
 
       <%= f.label :category, "Categoria", class:"form_label pt-2 pb-2" %>
                   <%= error_tag payment_method, :category %>
-  <%= f.select :category, PaymentMethod.categories.keys, class:"form_controll"%>
+  <%= f.select :category, PaymentMethod.categories.keys.map {|type| [PaymentMethod.human_enum_name(:categories, type),type]}, class:"form_controll"%>
+
 
 
 
   <div class="input-group-btn">
-    <%= f.submit button_text,  class:"btn btn-outline-dark btn-sm" %>
-    <%= link_to t('links.back'), admin_root_path, class:"btn btn-outline-dark btn-sm" %>
+    <%= f.submit button_text,  class:"btn btn-outline-dark btn-sm mt-2" %>
+    <%= link_to t('links.back'), admin_root_path, class:"btn btn-outline-dark btn-sm mt-2" %>
 </div>
 <% end %>
 </div>

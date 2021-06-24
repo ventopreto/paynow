@@ -13,8 +13,8 @@ class Charge < ApplicationRecord
   validates :pix, presence: true, if: :paid_with_pix?
   validates :credit_card_number, length: { is: 16 }, if: :paid_with_card?
   validates :cvv, length: { in: 3..4 }, if: :paid_with_card?
-  enum payment_category: { Pix:0, Boleto:1, Cartão:2}
-  enum status: { pendente:0, aprovada:1, rejeitada_1:2, rejeitada_2:3, rejeitada_3:4}
+  enum payment_category: { pix:0, boleto:1, credit_card:2}
+  enum status: { pending:0, approved:1, insufficient_funds:2, incorrect_data:3, refused:4}
 
 
   def generate_token
@@ -22,15 +22,15 @@ class Charge < ApplicationRecord
   end
 
   def paid_with_pix?
-    self.payment_category == 'Pix'
+    self.payment_category == 'pix'
   end
 
   def paid_with_boleto?
-    self.payment_category == 'Boleto'
+    self.payment_category == 'boleto'
   end
 
   def paid_with_card?
-    self.payment_category == 'Cartão'
+    self.payment_category == 'credit_card'
   end
 end
 

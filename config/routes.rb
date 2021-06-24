@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, path: 'users'
   devise_for :admins, path: 'admins'
   root to: "home#index"
-  resources :receipts, only: %i[index]
+  resources :receipts, only: %i[index show]
 
   namespace :api do
     namespace :v1 do

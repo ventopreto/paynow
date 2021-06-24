@@ -1,5 +1,4 @@
 class Api::V1::EndUsersController < ActionController::API
-  rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
   
     def create
@@ -13,8 +12,6 @@ class Api::V1::EndUsersController < ActionController::API
           @end_user = @company.company_end_users.create!(end_user: EndUser.create!(end_user_params))
           head 201
         end
-      else
-        render json:{error: "company_token não pode ficar em branco" }, status: 422
       end
     rescue ActionController::ParameterMissing
       render status: :precondition_failed, json: {errors: 'Parâmetros inválidos'}
@@ -26,9 +23,7 @@ class Api::V1::EndUsersController < ActionController::API
       params.require(:end_user).permit(:cpf, :fullname)
     end
   
-    def not_found
-      head 404
-    end
+
   
     def record_invalid(exception)
       render json: exception.record.errors, status: :unprocessable_entity

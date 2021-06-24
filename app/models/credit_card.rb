@@ -7,6 +7,6 @@ class CreditCard < ApplicationRecord
   validates :token, length: {maximum: 20}
 
   def category_with_name
-    "#{payment_method.category} #{payment_method.name}"
+    "Cartão #{payment_method.name}"
   end
 end

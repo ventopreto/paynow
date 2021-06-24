@@ -1,17 +1,17 @@
 require 'rails_helper'
 
 describe 'User' do
+  let(:company) {Company.create(cnpj: '12345678910110', corporate_name: 'Codeplay', 
+  billing_address: 'Rua x, 420', email: 'admin@codeplay.com.br' )}
+  let(:user) {User.create(email:'x@x.com.br',password: '123456', company: company)}
+  let(:token)  { SecureRandom.base64(15)}
     describe 'visit available payment method' do
      it 'successfully' do
 
-      company = Company.create(cnpj: '12345678910110', corporate_name: 'Codeplay', 
-      billing_address: 'Rua x, 420', email: 'admin@codeplay.com.br' )
-      token = SecureRandom.base64(20)
-      user = User.create(email:'x@x.com.br',password: '123456', company_id: company.id)
-      boleto = PaymentMethod.create!(name: 'Roxinho', max_fee: 10, percentage_fee:10, category:'Boleto')
-      pix = PaymentMethod.create!(name: 'Roxinho', max_fee: 5, percentage_fee:10, category:'Pix')
-      user_choosen_boleto = Boleto.create(bank_code: 123, agency_number: 1234, bank_account: 123456789, company_id: company.id, payment_method_id: boleto.id)
-      user_choosen_pix = Pix.create(pix_key: token, bank_code: 1234, company_id: company.id, payment_method_id: pix.id)
+      boleto = PaymentMethod.create!(name: 'Roxinho', max_fee: 10, percentage_fee:10, category:'boleto')
+      pix = PaymentMethod.create!(name: 'Roxinho', max_fee: 5, percentage_fee:10, category:'pix')
+      user_choosen_boleto = Boleto.create(bank_code: 123, agency_number: 1234, bank_account: 123456789, company: company, payment_method: boleto)
+      user_choosen_pix = Pix.create(pix_key: token, bank_code: 1234, company: company, payment_method: pix)
 
   login_as user, scope: :user
   visit root_path
@@ -22,14 +22,11 @@ describe 'User' do
     end
 
     it 'and click on back button' do
-      company = Company.create(cnpj: '12345678910110', corporate_name: 'Codeplay', 
-      billing_address: 'Rua x, 420', email: 'admin@codeplay.com.br' )
-      token = SecureRandom.base64(20)
-      user = User.create(email:'x@x.com.br',password: '123456', company_id: company.id)
-      boleto = PaymentMethod.create!(name: 'Roxinho', max_fee: 10, percentage_fee:10, category:'Boleto')
-      pix = PaymentMethod.create!(name: 'Roxinho', max_fee: 5, percentage_fee:10, category:'Pix')
-      user_choosen_boleto = Boleto.create(bank_code: 123, agency_number: 1234, bank_account: 123456789, company_id: company.id, payment_method_id: boleto.id)
-      user_choosen_pix = Pix.create(pix_key: token, bank_code: 1234, company_id: company.id, payment_method_id: pix.id)
+      
+      boleto = PaymentMethod.create!(name: 'Roxinho', max_fee: 10, percentage_fee:10, category:'boleto')
+      pix = PaymentMethod.create!(name: 'Roxinho', max_fee: 5, percentage_fee:10, category:'pix')
+      user_choosen_boleto = Boleto.create(bank_code: 123, agency_number: 1234, bank_account: 123456789, company: company, payment_method: boleto)
+      user_choosen_pix = Pix.create(pix_key: token, bank_code: 1234, company: company, payment_method: pix)
 
       login_as user, scope: :user
       visit root_path

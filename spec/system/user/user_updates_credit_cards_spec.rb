@@ -3,13 +3,13 @@ require 'rails_helper'
 describe 'User' do
   let!(:company) { Company.create!(cnpj: '12345678910110', corporate_name: 'Codeplay', 
   billing_address: 'Rua x, 420', email: 'admin@codeplay.com.br' )}
-  let!(:user) {User.create!(email:'x@x.com.br',password: '123456', company_id: company.id, role:1)}
-  let!(:payment_method_credit_card) {PaymentMethod.create!(name: 'Banco Roxinho', max_fee: 10, percentage_fee:10, category: 'Cartão')}
+  let!(:user) {User.create!(email:'x@x.com.br',password: '123456', company: company, role:1)}
+  let!(:payment_method_credit_card) {PaymentMethod.create!(name: 'Banco Roxinho', max_fee: 10, percentage_fee:10, category: 'credit_card')}
   let!(:credit_card) {CreditCard.create!(token:12345678909876543210, payment_method:payment_method_credit_card, company: company)}
-  let!(:companypayment2) {CompanyPayment.create!(company: company, payment_method: payment_method_credit_card)}
-  let!(:payment_method_pix) {PaymentMethod.create!(name: 'Banco Roxinho', max_fee: 10, percentage_fee:10, category: 'Pix')}
+  let!(:companypayment_credit_card) {CompanyPayment.create!(company: company, payment_method: payment_method_credit_card)}
+  let!(:payment_method_pix) {PaymentMethod.create!(name: 'Banco Roxinho', max_fee: 10, percentage_fee:10, category: 'pix')}
   let!(:pix) {Pix.create!(bank_code: 102, pix_key:12345678909876543210, payment_method:payment_method_pix, company: company)}
-  let!(:companypayment3) {CompanyPayment.create!(company: company, payment_method: payment_method_pix)}
+  let!(:companypayment_pix) {CompanyPayment.create!(company: company, payment_method: payment_method_pix)}
 
   describe 'updates' do
     it 'creditcard successfully' do

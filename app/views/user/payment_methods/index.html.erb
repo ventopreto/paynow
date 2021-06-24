@@ -9,7 +9,12 @@
       <div class="card-body border border-dark row">
         <% @payment_methods.each do |payment_method| %>
         <div class="card col-4 text-center">
-        <h5 class="card-title"><%= image_tag payment_method.icon, size: '50' %><%= link_to "#{payment_method.category} #{payment_method.name}", [:user, payment_method] %></h5>
+        <h5 class="card-title">
+          <% if payment_method.icon.attached? %>
+            <%= image_tag payment_method.icon, size: '50' %>
+          <% end %>
+          <%= link_to payment_method.category_with_name , [:user, payment_method] %>
+        </h5>
         </div>
         <% end %>
       </div>

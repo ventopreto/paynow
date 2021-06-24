@@ -1,4 +1,14 @@
 pt-BR:
+  activerecord:
+    attributes: 
+      payment_method:
+        name: Nome
+        max_fee: Taxa máxima em reais
+        percentage_fee: Taxa por cobrança
+        categories:
+          pix: Pix
+          boleto: Boleto 
+          credit_card: Cartão de Credito
   admin:
     payment_methods:
       new:
@@ -9,12 +19,7 @@ pt-BR:
         success: Metodo de pagamento excluido com sucesso
       update:
         fail: Falha na atualização
-    attributes: 
-      payment_method:
-        name: Nome
-        max_fee: Taxa máxima em reais
-        percentage_fee: Taxa por cobrança
-    
+
 
 
 

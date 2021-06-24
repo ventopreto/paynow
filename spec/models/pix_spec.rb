@@ -19,7 +19,7 @@ describe Pix do
       codeplay =Company.create(email: 'codeplay@codeplay.com.br', cnpj: 12345678910110, 
       billing_address:'Rua Tal, 50, Centro',
       corporate_name: 'codeplay ltda')
-      payment = PaymentMethod.create(name: 'pix', max_fee: 30, percentage_fee: 10, category: "Pix")
+      payment = PaymentMethod.create(name: 'pix', max_fee: 30, percentage_fee: 10, category: "pix")
       pix = Pix.create(pix_key: token, bank_code: 1234, company_id: codeplay.id, payment_method_id: payment.id)
 
       payment.valid?
@@ -37,7 +37,7 @@ describe Pix do
       codeplay =Company.create(email: 'codeplay@codeplay.com.br', cnpj: 12345678910110, 
       billing_address:'Rua Tal, 50, Centro',
       corporate_name: 'codeplay ltda')
-      payment = PaymentMethod.create(name: 'pix', max_fee: 30, percentage_fee: 10, category: "Pix")
+      payment = PaymentMethod.create(name: 'pix', max_fee: 30, percentage_fee: 10, category: "pix")
       pix1 = Pix.create(pix_key: token, bank_code: 1234, company_id: codeplay.id, payment_method_id: payment.id)
       pix2 = Pix.create(pix_key: token, bank_code: 321, company_id: codeplay.id, payment_method_id: payment.id)
 
@@ -54,7 +54,7 @@ describe Pix do
       codeplay =Company.create(email: 'codeplay@codeplay.com.br', cnpj: 12345678910110, 
       billing_address:'Rua Tal, 50, Centro',
       corporate_name: 'codeplay ltda')
-      payment = PaymentMethod.create(name: 'pix', max_fee: 30, percentage_fee: 10, category: "Pix")
+      payment = PaymentMethod.create(name: 'pix', max_fee: 30, percentage_fee: 10, category: "pix")
       pix2 = Pix.create(pix_key: token, bank_code: 321, company_id: codeplay.id, payment_method_id: payment.id)
 
 

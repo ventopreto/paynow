@@ -8,7 +8,9 @@
 					<% else %>
 				<% @boletos.each do |boleto| %>
 				<p class="card-text text-center">	
-				<%= image_tag boleto.payment_method.icon, size: '25' %>
+				<% if boleto.payment_method.icon.attached?%>
+					<%= image_tag boleto.payment_method.icon, size: '25' %>
+				<% end %>
 				<%= link_to boleto.category_with_name, user_payment_method_boleto_path(boleto.payment_method, boleto)%>
 				</p>
 				<p class="card-text text-center">Conta bancária: <%= boleto.bank_account %></p>
@@ -22,7 +24,10 @@
 			<div class="card-body border border-dark">
 				<h4 class="card-text text-center">Pix</h4>
 					<% @pixes.each do |pix| %>
-					<p class="card-text text-center">	<%= image_tag pix.payment_method.icon, size: '25' %>
+					<p class="card-text text-center">	
+					<% if pix.payment_method.icon.attached?%>
+						<%= image_tag pix.payment_method.icon, size: '25' %>
+					<% end %>
 					<%= link_to pix.category_with_name , user_payment_method_pix_path(pix.payment_method, pix)%>
 					</p>
 					<p class="card-text text-center">Chave Pix:<%= pix.pix_key%></p>
@@ -37,7 +42,9 @@
 				<h3 class="card-title text-center">Cartões</h3>
 					<% @creditcards.each do |creditcard| %>
 						<p class="card-text text-center">
-						<%= image_tag creditcard.payment_method.icon, size: '25' %>
+						<% if creditcard.payment_method.icon.attached?%>
+							<%= image_tag creditcard.payment_method.icon, size: '25' %>
+						<% end %>
 						<%= link_to creditcard.category_with_name,
 						 user_payment_method_credit_card_path(creditcard.payment_method.id, creditcard)%>
 						 	</p>

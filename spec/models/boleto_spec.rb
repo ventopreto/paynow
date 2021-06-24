@@ -20,7 +20,7 @@ describe Boleto do
       codeplay =Company.create(email: 'codeplay@codeplay.com.br', cnpj: 12345678910110, 
       billing_address:'Rua Tal, 50, Centro',
       corporate_name: 'codeplay ltda')
-      payment = PaymentMethod.create(name: 'Banco Roxinho', max_fee: 30, percentage_fee: 10, category: "Boleto")
+      payment = PaymentMethod.create(name: 'Banco Roxinho', max_fee: 30, percentage_fee: 10, category: 'boleto')
       boleto = Boleto.create(bank_code: 123, agency_number: 1234, bank_account: 123456789, company_id: codeplay.id, payment_method_id: payment.id)
 
   

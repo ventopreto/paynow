@@ -23,7 +23,7 @@ class Api::V1::ChargesController < ActionController::API
     @product = Product.find_by(token: charge_params[:product_token])
     @end_user = EndUser.find_by(token: charge_params[:end_user_token])
     case charge_params[:payment_category]
-    when 'Boleto'
+    when 'boleto'
       @discount = @product.price - @product.price*10/100
       @boleto = Boleto.find(charge_params[:payment])
       @address = charge_params[:address]
@@ -31,7 +31,7 @@ class Api::V1::ChargesController < ActionController::API
       boleto:@boleto, original_value: @product.price, payment_method: @boleto.payment_method, 
       payment_category: charge_params[:payment_category], address:@address, 
       value_with_discount: @discount, billing_due_date: 3.days.from_now.strftime("%d/%m/%Y") )           
-    when 'Pix'
+    when 'pix'
       @discount = @product.price - @product.price*5/100
       @pix = Pix.find(charge_params[:payment])
       @charge = Charge.create!(company: @company, end_user:@end_user, product: @product,
@@ -40,7 +40,7 @@ class Api::V1::ChargesController < ActionController::API
        value_with_discount: @discount, billing_due_date: 1.day.from_now.strftime("%d/%m/%Y") )   
 
 
-    when 'Cartão'
+    when 'credit_card'
       @discount = @product.price
       @credit_card = CreditCard.find(charge_params[:payment])
       @cvv = charge_params[:cvv]
@@ -63,13 +63,17 @@ class Api::V1::ChargesController < ActionController::API
   end
 
 private
+
   def charge_params
     params.require(:charge).permit(:end_user_token, :product_token, :company_token, :payment, :value_with_discount,
                                     :payment_category, :address, :cardholder_name, :credit_card_number, :cvv, :billing_due_date)
   end
+
   def not_found
     head 404
   end
+
+  
 
   def record_invalid(exception)
     render json: exception.record.errors, status: :unprocessable_entity

@@ -22,7 +22,7 @@ class User::CompaniesController < User::UserController
 
 def update_token
   @company = current_user.company
-  @company.token = SecureRandom.base64(20)
+  @company.regenerate_token
   if @company.save
     redirect_to user_company_path(@company.token)
   end

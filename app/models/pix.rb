@@ -6,6 +6,6 @@ class Pix < ApplicationRecord
   validates :pix_key, :bank_code, presence: true
 
   def category_with_name
-    "#{payment_method.category} #{payment_method.name}"
+    ("#{payment_method.category}").capitalize + " #{payment_method.name}"
   end
 end

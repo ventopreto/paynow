@@ -5,8 +5,8 @@ describe 'Back button' do
   let!(:company) { company = Company.create(cnpj: '12345678910110', corporate_name: 'Codeplay', 
   billing_address: 'Rua x, 420', email: 'admin@codeplay.com.br' )}
   let!(:payment_method_credit_card) {PaymentMethod.create!(name: 'Nubank', max_fee: 5, percentage_fee:10, category:2)}
-  let!(:payment_method_boleto) {PaymentMethod.create!(name: 'Nubank', max_fee: 5, percentage_fee:10, category:'Boleto')}
-  let!(:payment_method_pix) {PaymentMethod.create!(name: 'Nubank', max_fee: 5, percentage_fee:10, category:'Pix')}
+  let!(:payment_method_boleto) {PaymentMethod.create!(name: 'Nubank', max_fee: 5, percentage_fee:10, category:'boleto')}
+  let!(:payment_method_pix) {PaymentMethod.create!(name: 'Nubank', max_fee: 5, percentage_fee:10, category:'pix')}
 
 
   it 'of company page should redirect to root' do

@@ -21,6 +21,10 @@ class Company < ApplicationRecord
     self.update_column(:email_domain, self.email.split('@')[1])
   end
   
+  def regenerate_token
+    self.token = SecureRandom.base64(15) 
+  end
+
   def generate_token
     self.token = SecureRandom.base64(15) 
     end
