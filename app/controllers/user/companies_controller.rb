@@ -1,4 +1,5 @@
 class User::CompaniesController < User::UserController
+  before_action :get_company, only: %i[show update_token]
 
   def new
     @company = Company.new
@@ -16,12 +17,10 @@ class User::CompaniesController < User::UserController
   end
 
   def show
-  @company = current_user.company
   @products = @company.products
   end
 
 def update_token
-  @company = current_user.company
   @company.regenerate_token
   if @company.save
     redirect_to user_company_path(@company.token)
@@ -32,14 +31,18 @@ end
 
 private
 
-
-
   def set_admin
-    current_user.update_column(:role, 1) 
+    current_user.role =  1
+    current_user.save!
+  end
+
+  def get_company
+    @company = current_user.company
   end
 
   def set_company_id
-    current_user.update_column(:company_id, @company.id) 
+    current_user.company = @company
+    current_user.save!
   end
 
   def company_params

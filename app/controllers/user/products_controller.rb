@@ -1,12 +1,12 @@
 class User::ProductsController < User::UserController
+  before_action :get_company, only: %i[new create show edit update]
+  before_action :get_product, only: %i[show edit update]
 
   def new
-    @company = current_user.company
     @product = Product.new
   end
 
   def create
-    @company = current_user.company
     @product = Product.new(product_params)
     @product.company = current_user.company
     if  @product.save
@@ -18,19 +18,13 @@ class User::ProductsController < User::UserController
 
 
   def show
-    @product = Product.find(params[:id])
-    @company = current_user.company
   end
 
 
   def edit
-    @company = current_user.company
-    @product = Product.find(params[:id])
   end
 
   def update
-    @company = current_user.company
-    @product = Product.find(params[:id])
     @product.company = current_user.company
     if @product.update(product_params)
       redirect_to user_company_product_path(@company.token, @product)
@@ -42,6 +36,14 @@ class User::ProductsController < User::UserController
 
 
 private
+
+  def get_product
+    @product = Product.find(params[:id])
+  end
+
+  def get_company
+    @company = current_user.company
+  end
 
   def product_params
     params.require(:product).permit(:name, :price, :discount, :company_id)

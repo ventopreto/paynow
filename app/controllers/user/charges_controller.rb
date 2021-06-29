@@ -1,18 +1,15 @@
 class User::ChargesController < User::UserController
+  before_action :get_company, only: %i[index edit update]
+  before_action :get_charge, only: %i[edit update]
 
   def index
-    @company = current_user.company
     @charges = @company.charges
   end
 
   def edit
-    @company = current_user.company
-    @charge = Charge.find_by(token: params[:token])
   end
 
   def update
-    @company = current_user.company
-    @charge = Charge.find_by(token: params[:token])
     if @charge.update(charge_params)
       case @charge.status
       when 'pending'
@@ -42,6 +39,14 @@ class User::ChargesController < User::UserController
   end
 
 private
+
+  def get_company
+    @company = current_user.company
+  end
+
+  def get_charge
+    @charge = Charge.find_by(token: params[:token])
+  end
 
   def charge_params
     params.require(:charge).permit(:status ,:effective_payment_date, :payment_attempt_date)

@@ -1,13 +1,15 @@
 class User::BoletosController < User::UserController
+  before_action :get_payment_method, only: %i[new create edit update]
+  before_action :get_company, only: %i[create show]
+  before_action :get_boleto, only: %i[show edit update]
+
+  
 
   def new
-    @payment_method = PaymentMethod.find(params[:payment_method_id])
     @boleto = Boleto.new
   end
 
   def create
-    @company = current_user.company
-    @payment_method = PaymentMethod.find(params[:payment_method_id])
     @boleto = Boleto.new(boleto_params)
     @boleto.company = current_user.company
     @boleto.payment_method = @payment_method
@@ -20,19 +22,12 @@ class User::BoletosController < User::UserController
   end
 
   def show
-    @company = current_user.company
-    @boleto = Boleto.find(params[:id])
   end
 
-
   def edit
-    @payment_method = PaymentMethod.find(params[:payment_method_id])
-    @boleto = Boleto.find(params[:id])
   end
 
   def update
-    @payment_method = PaymentMethod.find(params[:payment_method_id])
-    @boleto = Boleto.find(params[:id])
     if @boleto.update(boleto_params)
       redirect_to user_payment_method_boleto_path(@boleto)
     else
@@ -42,6 +37,17 @@ class User::BoletosController < User::UserController
 
 private
 
+  def get_company
+    @company = current_user.company
+  end
+
+  def get_boleto
+    @boleto = Boleto.find(params[:id])
+  end
+
+  def get_payment_method
+    @payment_method = PaymentMethod.find(params[:payment_method_id])
+  end
 
   def boleto_params
     params.require(:boleto).permit(:bank_code, :agency_number, :bank_account, :company_id, :payment_method_id)
