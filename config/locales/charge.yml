@@ -15,6 +15,16 @@
           payment_category: Tipo de Pagamento
           address: Endereço completo
           credit_card_number: Número do cartão
+          categories:
+            pix: Pix
+            boleto: Boleto 
+            credit_card: Cartão de Credito
+          status:
+            pending: Pendente
+            approved: Aprovado
+            insufficient_funds: falta de créditos
+            incorrect_data: Dados incorretos
+            refused: Recusada
           statuses:
             pending: 01 Pendente de cobrança
             approved: 05 Cobrança efetivada com sucesso

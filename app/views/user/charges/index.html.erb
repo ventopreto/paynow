@@ -8,6 +8,7 @@
 			<th scope="col">Status</th>
       <th scope="col">Tipo de Pagamento</th>
 			<th scope="col">Código de retorno</th>
+      <th scope="col">Recibo</th>
     </tr>
   </thead>
   <tbody>
@@ -16,11 +17,13 @@
       <th scope="row"><%=i+1%></th>
 				<td><%= link_to "Atualizar #{charge.token}", edit_user_company_charge_path(@company.token, charge.token), class:"btn btn-info" %> </td>
 				<td class="text-center"><%= charge.product.name %></td>
-				<td><%= charge.value_with_discount%></td>
-				<td><%= charge.status %></td>
-				<td class="text-center"><%= charge.payment_category %></td>
+				<td><%= charge.value_with_discount %></td>
+				<td><%= I18n.t "activerecord.attributes.charge.status.#{(charge.status)}" %></td>
+				<td class="text-center"><%= I18n.t "activerecord.attributes.charge.categories.#{(charge.payment_category)}" %></td>
 				<td><%= charge.last_status %></td>
-
+        <% if charge.payment_receipt %>
+        <td class="text-center"><%= link_to "Recibo", receipt_url(charge.payment_receipt.authorization_code)%></td>
+        <% end %>
     </tr>
 		<% end %>
   </tbody>

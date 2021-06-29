@@ -9,11 +9,13 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row"><%=i+1%></th>
+      <th scope="row"><%=1%></th>
       <td><%= @receipt.billing_due_date%></td>
       <td><%= @receipt.effective_payment_date%></td>
       <td><%= @receipt.authorization_code%></td>
     </tr>
-    <% end %>
   </tbody>
 </table>
+<div class="text-center">
+    <%= link_to t('links.back'), :back, class:"btn btn-outline-dark btn-sm" %>
+</div>

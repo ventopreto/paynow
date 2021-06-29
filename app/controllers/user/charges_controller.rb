@@ -2,6 +2,7 @@ class User::ChargesController < User::UserController
   before_action :get_company, only: %i[index edit update]
   before_action :get_charge, only: %i[edit update]
 
+
   def index
     @charges = @company.charges
   end
@@ -10,11 +11,8 @@ class User::ChargesController < User::UserController
   end
 
   def update
-    if @charge.update(charge_params)
-      redirect_to user_company_charges_path(@company.token)
+    if @charge.update!(charge_params)
       create_receipt
-    else
-      render :edit
     end
   end
 
@@ -34,12 +32,15 @@ private
       billing_due_date:@charge.created_at, authorization_code: params[:charge][:authorization_code], charge: @charge)
      @charge.last_status = '05 Cobrança efetivada com sucesso'
      @charge.approved! 
+     redirect_to user_company_charges_path(@company.token)
   else
       if charge_params[:payment_attempt_date].present?
       @charge.last_status = I18n.t "activerecord.attributes.charge.statuses.#{(@charge.status)}"
       @charge.pending!
-      else
-        raise Exception.new('something bad happened!')
+      redirect_to user_company_charges_path(@company.token)
+    else
+      flash[:alert] = "Não pode ficar em branco"
+      render :edit
       end
     end
   end

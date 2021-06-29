@@ -20,7 +20,6 @@
     <%= f.label :authorization_code, "Código de Autorização", class:"form_label" %>
         <%= error_tag charge, :authorization_code %>
     <%= f.text_field :authorization_code , class:"form_controll" %>
-    
 
     <%= f.label :payment_attempt_date, "Data da tentativa", class:"form_label" %>
         <%= error_tag charge, :payment_attempt_date %>
@@ -28,7 +27,8 @@
 
   <div class="input-group-btn">
     <%= f.submit button_text,  class:"btn btn-outline-success btn-sm" %>
-    <%= link_to t('links.back'), root_path, class:"btn btn-outline-dark btn-sm" %>
+    <%= link_to t('links.back'), :back, class:"btn btn-outline-dark btn-sm" %>
+    
 </div>
 <% end %>
 </div>

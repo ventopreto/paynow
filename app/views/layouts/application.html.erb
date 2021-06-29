@@ -19,9 +19,6 @@
       <div class="collapse navbar-collapse">
        <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <%= link_to 'Recibos', receipts_path, class:"nav-link" %>
-        </li>
-        <li class="nav-item active">
          <% if  user_signed_in?%>
         <% if  current_user && current_user.company %>
         <li class="nav-item active">
