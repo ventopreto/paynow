@@ -1,7 +1,8 @@
 class CreditCard < ApplicationRecord
   belongs_to :company
   belongs_to :payment_method
-
+  validates :payment_method, uniqueness: { scope: :company,
+  message: "Metodo de Pagamento já cadastrado" }
   validates :token, presence: true
   validates :token, uniqueness: true
   validates :token, length: {maximum: 20}

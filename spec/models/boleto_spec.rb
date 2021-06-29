@@ -33,5 +33,29 @@ describe Boleto do
       expect(boleto).to be_valid
       expect(boleto.category_with_name).to eq('Boleto Banco Roxinho')
     end
+
+  it 'cannot register same payment method twice' do
+    boleto = Boleto.create(bank_code: 123, agency_number: 1234, bank_account: 123456789)
+    codeplay =Company.create(email: 'codeplay@codeplay.com.br', cnpj: 12345678910110, 
+    billing_address:'Rua Tal, 50, Centro',
+    corporate_name: 'codeplay ltda')
+    xbox =Company.create(email: 'admin@xbox.com.br', cnpj: 12345678910166, 
+    billing_address:'Rua Tal, 50, Centro',
+    corporate_name: 'Xbox ltda')
+
+    payment = PaymentMethod.create(name: 'Banco Roxinho', max_fee: 30, percentage_fee: 10, category: 'boleto')
+    boleto = Boleto.create!(bank_code: 123, agency_number: 1234, bank_account: 123456789, company_id: codeplay.id, payment_method_id: payment.id)
+    another_boleto = Boleto.new(bank_code: 153, agency_number: 12345, bank_account: 1234567890, company_id: codeplay.id, payment_method_id: payment.id)
+    other_boleto = Boleto.new(bank_code: 122, agency_number: 54321, bank_account: 9876543210, company_id: xbox.id, payment_method_id: payment.id)
+
+
+    boleto.valid?
+    another_boleto.valid?
+    other_boleto.valid?
+
+    expect(boleto).to be_valid
+    expect(another_boleto.errors[:payment_method]).to include("Metodo de Pagamento já cadastrado")
+    expect(other_boleto).to be_valid
+    end
   end
 end

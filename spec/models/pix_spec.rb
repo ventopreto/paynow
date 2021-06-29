@@ -38,15 +38,15 @@ describe Pix do
       billing_address:'Rua Tal, 50, Centro',
       corporate_name: 'codeplay ltda')
       payment = PaymentMethod.create(name: 'pix', max_fee: 30, percentage_fee: 10, category: "pix")
-      pix1 = Pix.create(pix_key: token, bank_code: 1234, company_id: codeplay.id, payment_method_id: payment.id)
-      pix2 = Pix.create(pix_key: token, bank_code: 321, company_id: codeplay.id, payment_method_id: payment.id)
+      pix = Pix.create(pix_key: token, bank_code: 1234, company_id: codeplay.id, payment_method_id: payment.id)
+      another_pix = Pix.create(pix_key: token, bank_code: 321, company_id: codeplay.id, payment_method_id: payment.id)
 
-      pix1.valid?
-      pix2.valid?
+      pix.valid?
+      another_pix.valid?
   
-      expect(pix2.errors[:pix_key]).to include('já está em uso')
-      expect(pix1).to be_valid
-      expect(pix2).to_not be_valid
+      expect(another_pix.errors[:pix_key]).to include('já está em uso')
+      expect(pix).to be_valid
+      expect(another_pix).to_not be_valid
     end
 
     it 'ensure pix key have 20 characters' do
@@ -55,13 +55,36 @@ describe Pix do
       billing_address:'Rua Tal, 50, Centro',
       corporate_name: 'codeplay ltda')
       payment = PaymentMethod.create(name: 'pix', max_fee: 30, percentage_fee: 10, category: "pix")
-      pix2 = Pix.create(pix_key: token, bank_code: 321, company_id: codeplay.id, payment_method_id: payment.id)
+      pix = Pix.create(pix_key: token, bank_code: 321, company_id: codeplay.id, payment_method_id: payment.id)
 
 
-      pix2.valid?
+      pix.valid?
   
-      expect(pix2.errors[:pix_key]).to include('não possui o tamanho esperado (20 caracteres)')
-      expect(pix2).to_not be_valid
+      expect(pix.errors[:pix_key]).to include('não possui o tamanho esperado (20 caracteres)')
+      expect(pix).to_not be_valid
     end
+
+    it 'cannot register same payment method twice' do
+      codeplay =Company.create(email: 'codeplay@codeplay.com.br', cnpj: 12345678910110, 
+      billing_address:'Rua Tal, 50, Centro',
+      corporate_name: 'codeplay ltda')
+      xbox =Company.create(email: 'admin@xbox.com.br', cnpj: 12345678910166, 
+      billing_address:'Rua Tal, 50, Centro',
+      corporate_name: 'Xbox ltda')
+  
+      payment = PaymentMethod.create(name: 'pix', max_fee: 30, percentage_fee: 10, category: "pix")
+  
+      pix = Pix.create(pix_key: SecureRandom.base64(15), bank_code: 1234, company_id: codeplay.id, payment_method_id: payment.id)
+      another_pix = Pix.create(pix_key: SecureRandom.base64(15), bank_code: 321, company_id: codeplay.id, payment_method_id: payment.id)
+      other_pix = Pix.create(pix_key: SecureRandom.base64(15), bank_code: 521, company_id: xbox.id, payment_method_id: payment.id)
+  
+      pix.valid?
+      another_pix.valid?
+      other_pix.valid?
+  
+      expect(pix).to be_valid
+      expect(another_pix.errors[:payment_method]).to include("Metodo de Pagamento já cadastrado")
+      expect(other_pix).to be_valid
+      end
   end
 end
