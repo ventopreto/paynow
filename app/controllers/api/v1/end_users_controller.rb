@@ -22,9 +22,6 @@ class Api::V1::EndUsersController < ActionController::API
     def end_user_params
       params.require(:end_user).permit(:cpf, :fullname)
     end
-  
-
-  
     def record_invalid(exception)
       render json: exception.record.errors, status: :unprocessable_entity
     end

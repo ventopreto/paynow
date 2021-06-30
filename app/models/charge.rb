@@ -37,7 +37,6 @@ class Charge < ApplicationRecord
     self.status == 'approved'
   end
 
-
   def paid_with_boleto?
     self.payment_category == 'boleto' 
   end

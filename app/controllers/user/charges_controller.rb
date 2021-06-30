@@ -38,9 +38,6 @@ private
       @charge.last_status = I18n.t "activerecord.attributes.charge.statuses.#{(@charge.status)}"
       @charge.pending!
       redirect_to user_company_charges_path(@company.token)
-    else
-      flash[:alert] = "Não pode ficar em branco"
-      render :edit
       end
     end
   end
