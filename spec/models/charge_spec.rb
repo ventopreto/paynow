@@ -121,5 +121,33 @@ describe Charge do
       expect(charge.errors[:credit_card_number]).to include('não possui o tamanho esperado (16 caracteres)')
       expect(charge).to_not be_valid
     end
+
+    it 'ensure presence of payment_attempt_date on update when status different of approved' do
+      charge = Charge.create(payment_category:credit_card.payment_method.category,
+       payment_method: credit_card.payment_method, company: codeplay, 
+      credit_card: credit_card, cvv: 1236, cardholder_name: 'Fulano Sicrano',
+       credit_card_number: 1234567898111210 ,end_user: end_user, product: ruby_course, original_value: ruby_course.price)
+      
+      charge.valid?
+
+      charge.update(status: 'refused') 
+      expect(charge.status).to eq("refused")
+      expect(charge.errors[:payment_attempt_date]).to include("não pode ficar em branco")
+      expect(charge).to_not be_valid
+    end
+
+    it 'ensure presence of effective payment date on update when status equal approved' do
+      charge = Charge.create(payment_category:credit_card.payment_method.category,
+       payment_method: credit_card.payment_method, company: codeplay, 
+      credit_card: credit_card, cvv: 1236, cardholder_name: 'Fulano Sicrano',
+       credit_card_number: 1234567898111210 ,end_user: end_user, product: ruby_course, original_value: ruby_course.price)
+      
+      charge.valid?
+
+      charge.update(status: 'approved') 
+      expect(charge.status).to eq("approved")
+      expect(charge.errors[:effective_payment_date]).to include("não pode ficar em branco")
+      expect(charge).to_not be_valid
+    end
   end
 end

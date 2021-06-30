@@ -13,6 +13,7 @@ class Charge < ApplicationRecord
   validates :boleto, :address, presence: true, if: :paid_with_boleto?
   validates :pix, presence: true, if: :paid_with_pix?
   validates :payment_attempt_date, presence: true, if: :status_diferrent_of_approved?, on: :update
+  validates :effective_payment_date, presence: true, if: :status_equal_approved?, on: :update
   validates :credit_card_number, length: { is: 16 }, if: :paid_with_card?
   validates :cvv, length: { in: 3..4 }, if: :paid_with_card?
 
@@ -30,6 +31,10 @@ class Charge < ApplicationRecord
 
   def status_diferrent_of_approved?
     self.status == 'insufficient_funds' || self.status == 'incorrect_data' ||  self.status == 'refused' 
+  end
+
+  def status_equal_approved?
+    self.status == 'approved'
   end
 
 
